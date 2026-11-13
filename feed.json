@@ -1,0 +1,182 @@
+{
+  "updated": "2026-11-13",
+  "contactEmail": "chris@5ymarketing.com",
+  "focus": {
+    "title": "Holiday & Year-End Gifts",
+    "intro": "Year-end is when clients thank their teams and their best customers. These gifts get used long after the holidays: premium kits, name-brand tech and cold-weather favorites that still have time to ship."
+  },
+  "products": [
+    {
+      "supplier": "Rupt",
+      "item": "",
+      "name": "Winter Groutfit Kit",
+      "desc": "A curated cold-weather gift kit, ready for holiday and year-end employee gifting.",
+      "img": "https://rupt.com/cdn/shop/files/Winter_Groutfit_Kit_HERO.jpg?v=1789574258&width=800",
+      "url": "https://rupt.com/collections/all-main/products/winter-groutfit-kit"
+    },
+    {
+      "supplier": "Twintech",
+      "item": "26062",
+      "name": "MagFast 5K Power Bank with One Cable",
+      "desc": "A name-brand magnetic power bank with its own cable, for a step-up tech gift.",
+      "img": "https://www.twintechpromo.com/13597-home_default/magfast-5k-power-bank-with-one-cable.jpg",
+      "url": "https://www.twintechpromo.com/1355-magfast-5k-power-bank-with-one-cable.html"
+    },
+    {
+      "supplier": "Innovation Line",
+      "item": "BN102",
+      "name": "\"Winteridge\" Fleece-Lined Beanie",
+      "desc": "A warm, fleece-lined knit beanie, an easy add to any winter gift or team handout.",
+      "img": "https://www.innovation-line.com/Product-Images/Group/500/BN102.jpg",
+      "url": "http://www.innovation-line.com/fleece-lined-beanie-winteridge-bn102.html"
+    },
+    {
+      "supplier": "Rupt",
+      "item": "",
+      "name": "Rockin' Around the Rupt Tree Kit",
+      "desc": "A holiday-themed gift kit built for client and team appreciation.",
+      "img": "https://rupt.com/cdn/shop/files/Rockin_Around_the_Rupt_Tree_Kit_-_HERO.webp?v=1789752898&width=800",
+      "url": "https://rupt.com/collections/all-main/products/rockin-around-the-rupt-tree-kit"
+    },
+    {
+      "supplier": "Twintech",
+      "item": "26008",
+      "name": "Cinemaflex Retro Digital Camera",
+      "desc": "A retro-styled digital camera with hand-crank video recording, a memorable gift for any team.",
+      "img": "https://www.twintechpromo.com/13642-home_default/cinemaflex-retro-digital-camera-fun-camera-with-hand-crank-recording.jpg",
+      "url": "https://www.twintechpromo.com/1281-cinemaflex-retro-digital-camera-fun-camera-with-hand-crank-recording.html"
+    },
+    {
+      "supplier": "Innovation Line",
+      "item": "DKW400",
+      "name": "\"Velo\" 18 oz. Recycled Travel Tumbler",
+      "desc": "A double-wall travel tumbler made with recycled material, a gift people reach for every day.",
+      "img": "https://www.innovation-line.com/Product-Images/Group/500/DKW400.jpg",
+      "url": "http://www.innovation-line.com/velo-18-oz-double-wall-recycled-travel-tumbler-dkw400.html"
+    },
+    {
+      "supplier": "Rupt",
+      "item": "",
+      "name": "Cozy Winter Kit",
+      "desc": "A cozy-themed winter bundle for seasonal gifting programs.",
+      "img": "https://rupt.com/cdn/shop/files/1Av_wveluCFNJ_S_B8EoUDeVszSWHepx2_w2400.jpg?v=1789436664&width=800",
+      "url": "https://rupt.com/collections/all-main/products/cozy-winter-kit"
+    },
+    {
+      "supplier": "Rupt",
+      "item": "",
+      "name": "Back to Black Bundle",
+      "desc": "A premium all-black gift bundle with a sleek, executive look.",
+      "img": "https://rupt.com/cdn/shop/files/1Bd4Q_4IoRXyHNq5OSI6ROtZiWO5jeurE_w2400_b71e04be-63b6-498b-8af4-54b69e799977.jpg?v=1789500658&width=800",
+      "url": "https://rupt.com/collections/all-main/products/back-to-black-bundle"
+    },
+    {
+      "supplier": "Rupt",
+      "item": "",
+      "name": "Ultimate Voyager Bundle",
+      "desc": "A travel-focused premium bundle for top clients and incentive programs.",
+      "img": "https://rupt.com/cdn/shop/files/Ultimatevoyagerbundle_Mainv2.jpg?v=1780688358&width=800",
+      "url": "https://rupt.com/collections/all-main/products/ultimate-voyager-bundle"
+    },
+    {
+      "supplier": "Twintech",
+      "item": "26065",
+      "name": "NanoSnap Mini Keychain Digital Camera",
+      "desc": "A tiny digital camera that clips onto a keyring, a fun stocking-stuffer-size gift.",
+      "img": "https://www.twintechpromo.com/13568-home_default/nanosnap-mini-keychain-digital-camera.jpg",
+      "url": "https://www.twintechpromo.com/1347-3936-nanosnap-mini-keychain-digital-camera.html"
+    },
+    {
+      "supplier": "Twintech",
+      "item": "26006",
+      "name": "Fanttik E100 Ultra Mini Electric Screwdriver",
+      "desc": "A compact name-brand cordless screwdriver, a practical gift for trades and facilities teams.",
+      "img": "https://www.twintechpromo.com/12812-home_default/fanttik-e100-ultra-37v-mini-electric-screwdriver.jpg",
+      "url": "https://www.twintechpromo.com/1278-fanttik-e100-ultra-37v-mini-electric-screwdriver.html"
+    },
+    {
+      "supplier": "Twintech",
+      "item": "26051",
+      "name": "SolarVerde Speaker",
+      "desc": "A wireless speaker with a sustainability angle, a gift that suits eco-minded brands.",
+      "img": "https://www.twintechpromo.com/13615-home_default/solarverde-speaker.jpg",
+      "url": "https://www.twintechpromo.com/1342-solarverde-speaker.html"
+    },
+    {
+      "supplier": "Innovation Line",
+      "item": "PB301",
+      "name": "\"Volt\" Magnetic Wireless Power Bank",
+      "desc": "A UL-listed 5,000 mAh power bank that snaps magnetically onto the back of a phone.",
+      "img": "https://www.innovation-line.com/Product-Images/Group/500/PB301.jpg",
+      "url": "http://www.innovation-line.com/magnetic-wireless-power-bank-volt-ul-listed-5000-mah-pb301.html"
+    },
+    {
+      "supplier": "Innovation Line",
+      "item": "971",
+      "name": "\"Big Sky\" Crossbody Sling Pack",
+      "desc": "A compact hands-free sling bag, an easy gift that fits nearly any budget.",
+      "img": "https://www.innovation-line.com/Product-Images/Group/500/971.jpg",
+      "url": "http://www.innovation-line.com/big-sky-crossbody-sling-971.html"
+    },
+    {
+      "supplier": "Innovation Line",
+      "item": "TB6H",
+      "name": "\"Ted T. Bear\" 6\" Plush Bear",
+      "desc": "A plush bear with an optional branded hoodie, popular for healthcare, schools and nonprofits.",
+      "img": "https://www.innovation-line.com/Product-Images/Group/500/TB6H.jpg",
+      "url": "http://www.innovation-line.com/ted-t-bear-6-plush-teddy-bear-with-choice-of-hoodie.html"
+    },
+    {
+      "supplier": "Innovation Line",
+      "item": "TK171",
+      "name": "\"Malibu\" 8-Piece Mobile Tech Charging Kit",
+      "desc": "Eight charging essentials in a mesh zipper pouch, a ready-made tech gift set.",
+      "img": "https://www.innovation-line.com/Product-Images/Group/500/TK171.jpg",
+      "url": "http://www.innovation-line.com/tk171-malibu-8-pcs-mobile-tech-charging-kit-in-black-mesh-zipper-pouch-tk171.html"
+    }
+  ],
+  "partners": [
+    {
+      "name": "Stormtech",
+      "known": "Performance apparel",
+      "text": "Premium performance outerwear, fleece, polos and quarter-zips for team, corporate and uniform programs.",
+      "url": "https://www.stormtechperformance.com"
+    },
+    {
+      "name": "Cap America",
+      "known": "Headwear",
+      "text": "Promotional headwear and USA-made knits, with quick-turn and full custom programs and a wide range of decoration options.",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "name": "Rupt",
+      "known": "Premium kits & lifestyle",
+      "text": "Curated gift kits plus bags, apparel, audio, power and drinkware with a retail-brand feel.",
+      "url": "https://www.rupt.com"
+    },
+    {
+      "name": "Innovation Line",
+      "known": "Everyday promo essentials",
+      "text": "Drinkware, tech, kits, lanyards, golf, wellness and USA-made items, with rush options when time is short.",
+      "url": "https://www.innovation-line.com"
+    },
+    {
+      "name": "Twintech",
+      "known": "Tech & power",
+      "text": "Power banks, chargers, speakers, cameras and name-brand gadgets, including one-piece-minimum options.",
+      "url": "https://www.twintechpromo.com"
+    },
+    {
+      "name": "PEI",
+      "known": "Decorative & commemorative",
+      "text": "Custom photo-etched ornaments, awards and keepsakes for anniversaries, milestones, donors and events.",
+      "url": "https://www.pei-corporate.com"
+    },
+    {
+      "name": "uma Pens",
+      "known": "Writing instruments",
+      "text": "Pens and highlighters in plastic, metal, natural and recycled materials. Ask about the new uma US Selection catalog.",
+      "url": "https://www.us.uma-pen.com"
+    }
+  ]
+}
