@@ -56,6 +56,15 @@
 .sts .actions{display:flex;gap:10px}\
 .sts .actions a{flex:1;text-align:center;text-decoration:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:12px 6px 10px;border:1px solid var(--ink)}\
 .sts .actions a.primary{background:var(--ink);color:#fff}\
+.sts .uma{border-top:1px solid var(--line);padding:52px 0 20px}\
+.sts .uma .lede{font-size:17px}\
+.sts .uma-groups{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:34px}\
+@media (max-width:900px){.sts .uma-groups{grid-template-columns:1fr}}\
+.sts .uma-head{font-family:inherit;font-size:15px;letter-spacing:.2em;text-transform:uppercase;margin:0;display:flex;align-items:center;gap:14px}\
+.sts .uma-head:after{content:"";flex:1;border-top:1px solid var(--line)}\
+.sts .uma-head a{font-size:12px;letter-spacing:.14em;color:var(--blue);text-decoration:none;font-weight:600;order:2}\
+.sts .uma-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding:20px 0 10px}\
+@media (max-width:480px){.sts .uma-grid{grid-template-columns:1fr}}\
 .sts .partners{background:var(--blue-soft);padding:52px 0 60px}\
 .sts .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:30px}\
 .sts .partner{background:#fff;padding:22px;border-top:4px solid var(--blue);display:flex;flex-direction:column}\
@@ -114,7 +123,40 @@
       '</div></section></div>';
   }
 
-  function renderFull(box, data) {
+  // uma rotation: a new set of 2 Plastic + 2 Metal pens every Monday, cycling through the catalog
+  function umaPicks(uma) {
+    var start = new Date(uma.startWeek + 'T00:00:00');
+    var week = Math.max(0, Math.floor((Date.now() - start.getTime()) / (7 * 864e5)));
+    function take(list) {
+      var out = [], n = Math.min(uma.perWeek, list.length);
+      for (var i = 0; i < n; i++) out.push(list[(week * uma.perWeek + i) % list.length]);
+      return out;
+    }
+    return { plastic: take(uma.plastic), metal: take(uma.metal) };
+  }
+
+  function umaCard(data, p) {
+    var q = { name: p.name, item: p.item, supplier: 'uma' };
+    return '<article class="card"><div class="img"><img loading="lazy" alt="uma ' + esc(p.name) + '" src="' + esc(BASE + p.img) + '"></div>' +
+      '<div class="body"><span class="sup">uma &middot; ' + esc(p.material) + '</span><h3>' + esc(p.name) + '</h3>' +
+      '<div class="item">Item #' + esc(p.item) + '</div><p>' + esc(p.desc) + '</p>' +
+      '<div class="actions"><a class="primary" href="' + mailto(data, q) + '" target="_top">Ask Chris</a>' +
+      '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">Details</a></div></div></article>';
+  }
+
+  function renderUma(data, uma) {
+    if (!uma) return '';
+    var picks = umaPicks(uma);
+    function group(title, list, url) {
+      return '<div class="uma-group"><h3 class="uma-head">' + title + '<a href="' + esc(url) + '" target="_blank" rel="noopener">View all &rarr;</a></h3>' +
+        '<div class="uma-grid">' + list.map(function (p) { return umaCard(data, p); }).join('') + '</div></div>';
+    }
+    return '<section class="uma"><div class="wrap"><div class="center"><p class="eyebrow">Writing instruments</p><h2>uma Pen Picks</h2>' +
+      '<p class="lede">Two plastic and two metal pens from uma, a new set each week.</p></div>' +
+      '<div class="uma-groups">' + group('Plastic', picks.plastic, uma.plasticUrl) + group('Metal', picks.metal, uma.metalUrl) + '</div></div></section>';
+  }
+
+  function renderFull(box, data, uma) {
     var sups = [];
     data.products.forEach(function (p) { if (sups.indexOf(p.supplier) < 0) sups.push(p.supplier); });
     sups.sort();
@@ -123,6 +165,7 @@
       '<p class="lede">A new category every week, with products from my supplier partners that give you and your clients ideas that work.</p></div></header>' +
       '<section class="focus-banner"><div class="wrap center"><p class="eyebrow">This week\'s focus</p><h2>' + esc(data.focus.title) + '</h2><p>' + esc(data.focus.intro) + '</p></div></section>' +
       '<div class="wrap"><p class="updated center">' + weekOf(data) + '</p><div class="filters"></div><p class="count"></p><div class="grid"></div></div>' +
+      renderUma(data, uma) +
       '<section class="partners"><div class="wrap"><div class="center"><p class="eyebrow">The lines I represent</p><h2>Our Partners</h2></div><div class="partner-grid">' +
       data.partners.map(function (s) {
         return '<div class="partner"><h4>' + esc(s.name) + '</h4><div class="known">' + esc(s.known) + '</div><p>' + esc(s.text) +
@@ -164,11 +207,16 @@
     var boxes = document.querySelectorAll('.sts-embed');
     if (!boxes.length) return;
     addHead();
+    var umaReq = fetch(BASE + 'uma.json?v=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; });
     fetch(BASE + 'feed.json?v=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        boxes.forEach(function (box) {
-          if (box.getAttribute('data-view') === 'full') renderFull(box, data); else renderTeaser(box, data);
+        return umaReq.then(function (uma) {
+          boxes.forEach(function (box) {
+            if (box.getAttribute('data-view') === 'full') renderFull(box, data, uma); else renderTeaser(box, data);
+          });
         });
       })
       .catch(function () {

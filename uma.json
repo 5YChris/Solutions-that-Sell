@@ -1,0 +1,210 @@
+{
+  "startWeek": "2026-11-16",
+  "perWeek": 2,
+  "plasticUrl": "https://www.us.uma-pen.com/product-configurator-plastic.htm",
+  "metalUrl": "https://www.us.uma-pen.com/product-configurator-metal.htm",
+  "plastic": [
+    {
+      "name": "JUMP",
+      "item": "1-0051",
+      "material": "Plastic",
+      "desc": "Retractable pen with a matte barrel and clip button. Mix and match every part's color; frosted version 1-0051 TF.",
+      "img": "img/uma/uma-jump.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "SENZ RECY",
+      "item": "0-0166 RECY",
+      "material": "Plastic",
+      "desc": "Twist pen with a matte barrel and clip made from recycled ABS plastic.",
+      "img": "img/uma/uma-senz-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "4TunePen",
+      "item": "0-4400",
+      "material": "Plastic",
+      "desc": "Four-color pen with black, red, blue and green inks, a rubber grip and color-matched sliders.",
+      "img": "img/uma/uma-4tunepen.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "ALIGN RECY",
+      "item": "0-0540 K-TF GUM RECY",
+      "material": "Plastic",
+      "desc": "Soft-touch retractable pen in recycled ABS with a frosted clip and an ergonomic grip zone.",
+      "img": "img/uma/uma-align-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "STRIPE",
+      "item": "0-0039",
+      "material": "Plastic",
+      "desc": "Retractable pen with a frosted rubber grip, decorative ring and clip shell.",
+      "img": "img/uma/uma-stripe.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "STAGE RECY",
+      "item": "0-0550 K-TF GUM RECY",
+      "material": "Plastic",
+      "desc": "Soft-touch retractable pen made from recycled ABS, with a frosted clip and built-in grip.",
+      "img": "img/uma/uma-stage-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "CHILL SI",
+      "item": "1-0043 SI",
+      "material": "Plastic",
+      "desc": "Glossy twist pen with a chrome metal clip and heavy metal tip. Transparent version 1-0043 T-SI.",
+      "img": "img/uma/uma-chill-si.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "TRINITY RECY",
+      "item": "0-0133 RECY",
+      "material": "Plastic",
+      "desc": "Triangular-barrel retractable pen made from recycled ABS. Metal-tip version 0-0133 SI RECY.",
+      "img": "img/uma/uma-trinity-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "CHILL C SI",
+      "item": "1-0043 C-SI",
+      "material": "Plastic",
+      "desc": "Glossy twist pen with a matte-chrome metal clip and heavy metal tip.",
+      "img": "img/uma/uma-chill-c-si.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "TRINITY K transparent RECY",
+      "item": "0-0133 KT RECY",
+      "material": "Plastic",
+      "desc": "Triangular retractable pen in recycled ABS with a glossy transparent clip.",
+      "img": "img/uma/uma-trinity-k-transparent-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "SKY M GUM",
+      "item": "0-0125 M GUM",
+      "material": "Plastic",
+      "desc": "Soft-touch retractable pen with a flexible metal clip. Metal-tip version 0-0125 M-SI GUM.",
+      "img": "img/uma/uma-sky-m-gum.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "CHILL C RECY",
+      "item": "1-0043 C RECY",
+      "material": "Plastic",
+      "desc": "Twist pen made from 100% recycled post-consumer plastic, with a chrome metal clip.",
+      "img": "img/uma/uma-chill-c-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "TRINITY K transparent GUM",
+      "item": "0-0133 KT GUM",
+      "material": "Plastic",
+      "desc": "Soft-touch triangular pen with a glossy transparent clip.",
+      "img": "img/uma/uma-trinity-k-transparent-gum.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    },
+    {
+      "name": "CHILL C-SI RECY",
+      "item": "1-0043 C-SI RECY",
+      "material": "Plastic",
+      "desc": "Recycled-plastic twist pen with a metal clip and heavy metal tip. Mix and match colors.",
+      "img": "img/uma/uma-chill-c-si-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-plastic.htm"
+    }
+  ],
+  "metal": [
+    {
+      "name": "VIP GUM",
+      "item": "0-9100 GUM",
+      "material": "Metal",
+      "desc": "Soft-touch metal twist pen with glossy black fittings and a spring-mounted clip. Rollerball 0-9102 R GUM.",
+      "img": "img/uma/uma-vip-gum.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "GROOVE RECY",
+      "item": "0-9530 RECY",
+      "material": "Metal",
+      "desc": "Matte recycled-aluminum retractable pen with a grooved metal clip.",
+      "img": "img/uma/uma-groove-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "ARC",
+      "item": "0-8460",
+      "material": "Metal",
+      "desc": "Matte lacquered aluminum twist pen. Matching rollerball 0-8462 R and fountain pen 0-8466 F.",
+      "img": "img/uma/uma-arc.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "STRAIGHT GUM RECY",
+      "item": "0-9450 GUM RECY",
+      "material": "Metal",
+      "desc": "Soft-touch retractable pen made from recycled metal, with gunmetal fittings.",
+      "img": "img/uma/uma-straight-gum-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "TRION",
+      "item": "0-8433",
+      "material": "Metal",
+      "desc": "Aluminum retractable pen whose barrel tapers into a striking triangular tip.",
+      "img": "img/uma/uma-trion.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "MOOD CARBON",
+      "item": "0-9340 C",
+      "material": "Metal",
+      "desc": "Carbon-fiber twist pen with a spring-mounted clip and matte black fittings. Rollerball 0-9342 R C.",
+      "img": "img/uma/uma-mood-carbon.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "GROOVE TOUCH RECY",
+      "item": "0-9530 TO RECY",
+      "material": "Metal",
+      "desc": "Recycled-aluminum retractable pen with a built-in touch-screen stylus in the push button.",
+      "img": "img/uma/uma-groove-touch-recy.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "ORION",
+      "item": "0-8430",
+      "material": "Metal",
+      "desc": "Matte lacquered aluminum retractable pen with a matte black clip and button.",
+      "img": "img/uma/uma-orion.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "MOOD GUM",
+      "item": "0-9340 GUM",
+      "material": "Metal",
+      "desc": "Soft-touch metal twist pen with a spring-mounted clip and glossy black fittings. Rollerball available.",
+      "img": "img/uma/uma-mood-gum.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "AERO",
+      "item": "0-8390",
+      "material": "Metal",
+      "desc": "Matte lacquered aluminum retractable pen with a chrome clip and button.",
+      "img": "img/uma/uma-aero.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    },
+    {
+      "name": "STRAIGHT SI",
+      "item": "0-9450 SI",
+      "material": "Metal",
+      "desc": "Retractable pen with a matte or lacquered stainless barrel and chrome fittings. Soft-touch version 0-9450 SI GUM.",
+      "img": "img/uma/uma-straight-si.jpg",
+      "url": "https://www.us.uma-pen.com/product-configurator-metal.htm"
+    }
+  ]
+}
