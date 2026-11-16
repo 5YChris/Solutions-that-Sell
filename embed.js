@@ -88,6 +88,12 @@
 .sts .sp-links a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:12px 18px 10px;border:1px solid var(--ink)}\
 .sts .sp-links a.primary{background:var(--ink);color:#fff}\
 .sts .sp-none{text-align:center;color:var(--muted);font-size:18px;padding:40px 0}\
+.sts .capa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:24px 0 10px}\
+@media (max-width:1000px){.sts .capa-grid{grid-template-columns:repeat(2,1fr)}}\
+@media (max-width:480px){.sts .capa-grid{grid-template-columns:1fr}}\
+.sts .capa-logo{display:inline-block;margin-top:18px}.sts .capa-logo img{height:46px;width:auto;display:block}\
+.sts .capa-flyers{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600;text-decoration:none}\
+.sts .tag{display:inline-block;align-self:flex-start;margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--blue-soft);color:var(--blue);padding:3px 7px 2px;vertical-align:middle}\
 .sts .partners{background:var(--blue-soft);padding:52px 0 60px}\
 .sts .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:30px}\
 .sts .partner{background:#fff;padding:22px;border-top:4px solid var(--blue);display:flex;flex-direction:column}\
@@ -119,28 +125,78 @@
     return 'mailto:' + data.contactEmail + '?subject=' + encodeURIComponent(subj);
   }
   function weekOf(data) {
-    var d = new Date(data.updated + 'T12:00:00');
-    return 'Week of ' + d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    var w = weekIndex('2026-11-17');
+    var d = w > 0 ? new Date(new Date('2026-11-17T12:00:00-06:00').getTime() + (w - 1) * 7 * 864e5) : new Date(data.updated + 'T12:00:00');
+    return 'Week of ' + d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' });
   }
 
-  function pickTeaser(products, n) {
-    var bySup = {}, order = [];
-    products.forEach(function (p) { if (!bySup[p.supplier]) { bySup[p.supplier] = []; order.push(p.supplier); } bySup[p.supplier].push(p); });
-    var out = [], i = 0;
-    while (out.length < n && i < 50) { order.forEach(function (s) { if (bySup[s][i] && out.length < n) out.push(bySup[s][i]); }); i++; }
+  // Rotations change every Tuesday at midnight, Central time.
+  function weekIndex(startWeek) {
+    var start = new Date(startWeek + 'T00:00:00-06:00').getTime();
+    return Math.max(0, Math.floor((Date.now() - start) / (7 * 864e5)) + 1);
+  }
+  function rotate(list, n, week) {
+    var out = [];
+    n = Math.min(n, list.length);
+    for (var i = 0; i < n; i++) out.push(list[(week * n + i) % list.length]);
     return out;
   }
+  function stillActive(until) { return !until || Date.now() < new Date(until + 'T23:59:59-06:00').getTime(); }
 
-  function renderTeaser(box, data) {
+  // Cap America: 4 per week; knits keep 2 slots through their end date, holiday styles join the pool through theirs
+  function capaPicks(capa) {
+    if (!capa) return [];
+    var week = weekIndex(capa.startWeek), g = capa.groups, out = [];
+    var knits = capa.items.filter(function (c) { return c.group === 'knits'; });
+    var knitSlots = stillActive(g.knits.until) ? Math.min(g.knits.slots || 2, knits.length) : 0;
+    var pool = capa.items.filter(function (c) { return c.group === 'caps' || (c.group === 'holiday' && stillActive(g.holiday.until)); });
+    out = out.concat(rotate(knits, knitSlots, week), rotate(pool, capa.perWeek - knitSlots, week));
+    return out.map(function (c) { return { supplier: 'Cap America', name: c.name, item: c.item, desc: c.desc, img: BASE + c.img, url: c.url, tag: c.group === 'knits' ? 'Knit' : (c.group === 'holiday' ? 'Holiday' : '') }; });
+  }
+
+  // PEI: alternate brands so each week's fill-ins mix Callaway, Original Penguin and PGA TOUR
+  function peiPicks(pei, n) {
+    if (!pei || n <= 0) return [];
+    var by = {}, order = [];
+    pei.items.forEach(function (p) { if (!by[p.brand]) { by[p.brand] = []; order.push(p.brand); } by[p.brand].push(p); });
+    var mixed = [], i = 0, left = pei.items.length;
+    while (left > 0) { order.forEach(function (b) { if (by[b][i]) { mixed.push(by[b][i]); left--; } }); i++; }
+    return rotate(mixed, n, weekIndex(pei.startWeek)).map(function (p) {
+      return { supplier: 'PEI · ' + p.brand, name: p.name, item: p.styles, desc: p.desc + ' MSRP $' + p.msrp + '.', img: BASE + p.img, url: pei.url };
+    });
+  }
+
+  function umaAsProducts(uma) {
+    if (!uma) return [];
+    var picks = umaPicks(uma);
+    return picks.plastic.concat(picks.metal).map(function (p) { return { supplier: 'uma', name: p.name, item: p.item, img: BASE + p.img, url: p.url }; });
+  }
+
+  // Front page: one pick from each partner, in a fixed order
+  function teaserPicks(ctx) {
+    var out = [], data = ctx.data;
+    ['Innovation Line', 'Twintech', 'Rupt'].forEach(function (s) {
+      var list = data.products.filter(function (p) { return p.supplier === s; });
+      if (list.length) out.push(list[weekIndex('2026-11-17') % list.length]);
+    });
+    var c = capaPicks(ctx.capa); if (c.length) out.push(c[0]);
+    var p = peiPicks(ctx.pei, 1); if (p.length) out.push(p[0]);
+    var u = umaAsProducts(ctx.uma); if (u.length) out.push(u[weekIndex('2026-11-17') % u.length]);
+    if (out.length < 6) data.products.forEach(function (x) { if (out.length < 6 && out.indexOf(x) < 0) out.push(x); });
+    return out.slice(0, 6);
+  }
+
+  function renderTeaser(box, ctx) {
+    var data = ctx.data;
     var allUrl = box.getAttribute('data-all') || '#';
-    var cards = pickTeaser(data.products, 6).map(function (p) {
+    var cards = teaserPicks(ctx).map(function (p) {
       return '<a class="t-card" href="' + esc(p.url) + '" target="_blank" rel="noopener"><div class="img">' + imgTag(p) +
         '</div><div class="meta"><div class="sup">' + esc(p.supplier) + '</div><div class="name">' + esc(p.name) + '</div></div></a>';
     }).join('');
-    box.innerHTML = '<div class="sts">' + specialsBar(box, box._sp) + '<section class="teaser"><div class="wrap center">' +
+    box.innerHTML = '<div class="sts">' + specialsBar(box, ctx.sp) + '<section class="teaser"><div class="wrap center">' +
       '<p class="eyebrow">Top partners, top solutions</p><h2>Solutions that Sell</h2>' +
-      '<p class="lede">Each week I spotlight a different category with proven ideas from the supplier lines I represent.</p>' +
-      '<div class="focus-tag">This week: ' + esc(data.focus.title) + '</div>' +
+      '<p class="lede">Fresh ideas from the supplier lines I represent, with one pick from each partner. Updated every Tuesday.</p>' +
+      '<div class="focus-tag">' + weekOf(data) + '</div>' +
       '<div class="teaser-grid">' + cards + '</div>' +
       '<a class="btn" href="' + esc(allUrl) + '" target="_top">See this week\'s solutions</a>' +
       '</div></section></div>';
@@ -197,14 +253,8 @@
 
   // uma rotation: a new set of 2 Plastic + 2 Metal pens every Monday, cycling through the catalog
   function umaPicks(uma) {
-    var start = new Date(uma.startWeek + 'T00:00:00');
-    var week = Math.max(0, Math.floor((Date.now() - start.getTime()) / (7 * 864e5)));
-    function take(list) {
-      var out = [], n = Math.min(uma.perWeek, list.length);
-      for (var i = 0; i < n; i++) out.push(list[(week * uma.perWeek + i) % list.length]);
-      return out;
-    }
-    return { plastic: take(uma.plastic), metal: take(uma.metal) };
+    var week = weekIndex(uma.startWeek);
+    return { plastic: rotate(uma.plastic, uma.perWeek, week), metal: rotate(uma.metal, uma.perWeek, week) };
   }
 
   function umaCard(data, p) {
@@ -228,15 +278,37 @@
       '<div class="uma-groups">' + group('Plastic', picks.plastic, uma.plasticUrl) + group('Metal', picks.metal, uma.metalUrl) + '</div></div></section>';
   }
 
-  function renderFull(box, data, uma) {
+  function productCard(data, p) {
+    return '<article class="card"><div class="img">' + imgTag(p) + '</div><div class="body"><span class="sup">' + esc(p.supplier) + '</span>' +
+      (p.tag ? '<span class="tag">' + esc(p.tag) + '</span>' : '') +
+      '<h3>' + esc(p.name) + '</h3>' + (p.item ? '<div class="item">' + (/[ \/]/.test(p.item) ? '' : 'Item #') + esc(p.item) + '</div>' : '') +
+      '<p>' + esc(p.desc) + '</p><div class="actions"><a class="primary" href="' + mailto(data, p) + '" target="_top">Ask Chris</a>' +
+      '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">Details</a></div></div></article>';
+  }
+
+  function renderCapa(data, capa) {
+    var picks = capaPicks(capa);
+    if (!picks.length) return '';
+    return '<section class="uma"><div class="wrap"><div class="center"><p class="eyebrow">Headwear</p><h2>Cap America Picks</h2>' +
+      '<p class="lede">Four caps from Cap America each week, including knits for the cold months.</p>' +
+      '<a class="capa-logo" href="' + esc(capa.salesFlyers) + '" target="_blank" rel="noopener" title="Cap America sales flyers"><img src="' + esc(BASE + capa.logo) + '" alt="Cap America"></a><br>' +
+      '<a class="capa-flyers" href="' + esc(capa.salesFlyers) + '" target="_blank" rel="noopener">See Cap America sales flyers &rarr;</a></div>' +
+      '<div class="capa-grid">' + picks.map(function (p) { return productCard(data, p); }).join('') + '</div></div></section>';
+  }
+
+  function renderFull(box, ctx) {
+    var data = ctx.data, uma = ctx.uma;
+    // Main grid: weekly partner picks, topped up with PEI so rows come out even (at least one PEI pick)
+    var base = data.products.slice();
+    var fill = Math.max(1, (4 - ((base.length + 1) % 4)) % 4 + 1);
+    var products = base.concat(peiPicks(ctx.pei, fill));
     var sups = [];
-    data.products.forEach(function (p) { if (sups.indexOf(p.supplier) < 0) sups.push(p.supplier); });
-    sups.sort();
-    box.innerHTML = '<div class="sts">' + specialsBar(box, box._sp) +
+    products.forEach(function (p) { if (sups.indexOf(p.supplier) < 0) sups.push(p.supplier); });
+    box.innerHTML = '<div class="sts">' + specialsBar(box, ctx.sp) +
       '<header class="full-head"><div class="wrap center"><p class="eyebrow">Top partners, top solutions</p><h1>Solutions that Sell</h1>' +
-      '<p class="lede">A new category every week, with products from my supplier partners that give you and your clients ideas that work.</p></div></header>' +
-      '<section class="focus-banner"><div class="wrap center"><p class="eyebrow">This week\'s focus</p><h2>' + esc(data.focus.title) + '</h2><p>' + esc(data.focus.intro) + '</p></div></section>' +
+      '<p class="lede">Fresh picks from my supplier partners, updated every Tuesday, with ideas that work for you and your clients.</p></div></header>' +
       '<div class="wrap"><p class="updated center">' + weekOf(data) + '</p><div class="filters"></div><p class="count"></p><div class="grid"></div></div>' +
+      renderCapa(data, ctx.capa) +
       renderUma(data, uma) +
       '<section class="partners"><div class="wrap"><div class="center"><p class="eyebrow">The lines I represent</p><h2>Our Partners</h2></div><div class="partner-grid">' +
       data.partners.map(function (s) {
@@ -249,14 +321,9 @@
     var filters = box.querySelector('.filters'), grid = box.querySelector('.grid'), count = box.querySelector('.count');
     var current = 'All';
     function draw() {
-      var list = data.products.filter(function (p) { return current === 'All' || p.supplier === current; });
-      count.textContent = list.length + ' solution' + (list.length === 1 ? '' : 's');
-      grid.innerHTML = list.map(function (p) {
-        return '<article class="card"><div class="img">' + imgTag(p) + '</div><div class="body"><span class="sup">' + esc(p.supplier) + '</span>' +
-          '<h3>' + esc(p.name) + '</h3>' + (p.item ? '<div class="item">Item #' + esc(p.item) + '</div>' : '') +
-          '<p>' + esc(p.desc) + '</p><div class="actions"><a class="primary" href="' + mailto(data, p) + '" target="_top">Ask Chris</a>' +
-          '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">Details</a></div></div></article>';
-      }).join('');
+      var list = products.filter(function (p) { return current === 'All' || p.supplier === current; });
+      count.textContent = list.length + ' pick' + (list.length === 1 ? '' : 's') + ' this week';
+      grid.innerHTML = list.map(function (p) { return productCard(data, p); }).join('');
     }
     if (sups.length > 1) {
       ['All'].concat(sups).forEach(function (v) {
@@ -284,18 +351,17 @@
         .then(function (r) { return r.ok ? r.json() : null; })
         .catch(function () { return null; });
     }
-    var umaReq = getJSON('uma.json'), spReq = getJSON('specials.json');
+    var reqs = ['uma.json', 'specials.json', 'capamerica.json', 'pei.json'].map(getJSON);
     fetch(BASE + 'feed.json?v=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        return Promise.all([umaReq, spReq]).then(function (res) {
-          var uma = res[0], sp = res[1];
+        return Promise.all(reqs).then(function (res) {
+          var ctx = { data: data, uma: res[0], sp: res[1], capa: res[2], pei: res[3] };
           boxes.forEach(function (box) {
             var v = box.getAttribute('data-view');
-            box._sp = sp;
-            if (v === 'full') renderFull(box, data, uma);
-            else if (v === 'specials') renderSpecials(box, data, sp);
-            else renderTeaser(box, data);
+            if (v === 'full') renderFull(box, ctx);
+            else if (v === 'specials') renderSpecials(box, data, ctx.sp);
+            else renderTeaser(box, ctx);
           });
         });
       })

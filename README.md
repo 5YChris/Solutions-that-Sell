@@ -1,9 +1,14 @@
 # Solutions that Sell
 
-Weekly category spotlight for [5ymarketing.com](https://www.5ymarketing.com), featuring products from Chris Yoder's supplier partners.
+Weekly partner picks, supplier rotations and specials for [5ymarketing.com](https://www.5ymarketing.com).
 
-- `feed.json` holds this week's focus, products and partner list. It is the only file that changes each week.
-- `embed.js` draws the front-page section and the full page inside GoDaddy HTML sections.
-- `index.html` is a preview of both.
+| File | What it holds | How it changes |
+|---|---|---|
+| `feed.json` | Partner picks from Innovation Line, Twintech and Rupt, plus the partner list | Refreshed every Tuesday by the scheduled update |
+| `capamerica.json` | Cap America styles from the Midyear New Styles and Holiday catalogs | Rotates 4 per week on its own; holiday styles through Dec 31, knits through Mar 31 |
+| `uma.json` | uma Plastic and Metal pens from the uma News 2026 catalog | Rotates 2 + 2 per week on its own |
+| `pei.json` | PEI styles (Callaway, Original Penguin, PGA TOUR) from the 2026 catalog | Rotates on its own; fills the main grid |
+| `specials.json` | Supplier specials and closeouts | Added from flyers; offers with an end date disappear after it |
+| `embed.js` | Draws the front-page section, the Solutions that Sell page and the Specials page | — |
 
-Live preview: https://5ychris.github.io/Solutions-that-Sell/
+All rotations change on Tuesdays (Central time). Preview: https://5ychris.github.io/Solutions-that-Sell/

@@ -1,0 +1,319 @@
+{
+  "startWeek": "2026-11-17",
+  "perWeek": 1,
+  "url": "https://www.pei-corporate.com",
+  "items": [
+    {
+      "brand": "Callaway",
+      "styles": "CGM451 / CGW437",
+      "name": "Ventilated Polo",
+      "msrp": "48.00",
+      "desc": "Lightweight ventilated performance polo for warm days, in a wide range of colors.",
+      "img": "img/pei/pei-cgm451.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM692 / CGW693",
+      "name": "Birdseye Polo",
+      "msrp": "52.00",
+      "desc": "Classic birdseye-textured performance polo with Opti-Dri moisture control.",
+      "img": "img/pei/pei-cgm692.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM441 / CGW435",
+      "name": "Ottoman Polo",
+      "msrp": "53.00",
+      "desc": "Ottoman-textured polo with UV Block protection and moisture wicking.",
+      "img": "img/pei/pei-cgm441.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM737 / CGW751",
+      "name": "Broken Stripe Polo",
+      "msrp": "56.00",
+      "desc": "Heathered broken-stripe polo with a relaxed, modern look.",
+      "img": "img/pei/pei-cgm737.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM211 / CGW212",
+      "name": "Core Performance Polo",
+      "msrp": "56.00",
+      "desc": "The go-to Callaway performance polo, also in Big & Tall (CGM211X).",
+      "img": "img/pei/pei-cgm211.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM670",
+      "name": "Long Sleeve Core Performance Polo",
+      "msrp": "60.00",
+      "desc": "Long-sleeve version of the Core Performance Polo for cooler rounds.",
+      "img": "img/pei/pei-cgm670.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM550 / CGW555",
+      "name": "Opti-Dri Chev Polo",
+      "msrp": "64.00",
+      "desc": "Stretch performance polo with UPF 50 protection and an embossed Chevron.",
+      "img": "img/pei/pei-cgm550.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM799 / CGW808",
+      "name": "Double Knit Polo",
+      "msrp": "64.00",
+      "desc": "New double-knit polo with a smooth, substantial hand.",
+      "img": "img/pei/pei-cgm799.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM794 / CGW792",
+      "name": "All-Over Stitched Chev Polo",
+      "msrp": "64.00",
+      "desc": "Performance polo with an all-over stitched Chevron texture.",
+      "img": "img/pei/pei-cgm794.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM800 / CGW809",
+      "name": "Mini Geo Printed Polo",
+      "msrp": "64.00",
+      "desc": "New mini geometric print polo with Opti-Dri moisture control.",
+      "img": "img/pei/pei-cgm800.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM711 / CGW703",
+      "name": "Fine Line Stripe Polo",
+      "msrp": "69.00",
+      "desc": "Fine-line stripe polo with the Callaway TOUR logo on the sleeve.",
+      "img": "img/pei/pei-cgm711.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM452 / CGW447",
+      "name": "Tonal Polo",
+      "msrp": "71.00",
+      "desc": "Tonal textured polo with Callaway embossed buttons.",
+      "img": "img/pei/pei-cgm452.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM791",
+      "name": "Micro Chev Printed Polo",
+      "msrp": "71.00",
+      "desc": "Men's polo with a subtle micro-Chevron print.",
+      "img": "img/pei/pei-cgm791.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGW625",
+      "name": "Ladies Tulip Sleeve Polo",
+      "msrp": "71.00",
+      "desc": "Women's polo with a feminine tulip sleeve and Opti-Dri performance.",
+      "img": "img/pei/pei-cgw625.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM774 / CGW773",
+      "name": "Soft Touch Hoodie",
+      "msrp": "64.00",
+      "desc": "Soft, lightweight performance hoodie for layering on and off the course.",
+      "img": "img/pei/pei-cgm774.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM768",
+      "name": "Houndstooth 1/4-Zip Pullover",
+      "msrp": "84.00",
+      "desc": "Thermal quarter-zip with a subtle houndstooth pattern.",
+      "img": "img/pei/pei-cgm768.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM798 / CGW793",
+      "name": "Diamond Quilted Fleece 1/4-Zip",
+      "msrp": "86.00",
+      "desc": "Diamond-quilted fleece quarter-zip with a Callaway signature zipper.",
+      "img": "img/pei/pei-cgm798.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM803 / CGW812",
+      "name": "Baby French Terry 1/4-Zip",
+      "msrp": "86.00",
+      "desc": "New soft baby French terry quarter-zip with the Callaway TOUR logo.",
+      "img": "img/pei/pei-cgm803.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM806 / CGW815",
+      "name": "Puffer Vest",
+      "msrp": "86.00",
+      "desc": "New lightweight puffer vest with a Callaway logo zipper pull.",
+      "img": "img/pei/pei-cgm806.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM771 / CGW772",
+      "name": "Full-Zip Ottoman Jacket",
+      "msrp": "82.00",
+      "desc": "Thermal anti-pilling full-zip jacket in an ottoman texture.",
+      "img": "img/pei/pei-cgm771.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM742 / CGW748",
+      "name": "Lightweight 1/4-Zip Pullover",
+      "msrp": "90.00",
+      "desc": "Lightweight wind- and water-repellent quarter-zip for changing weather.",
+      "img": "img/pei/pei-cgm742.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM540 / CGW545",
+      "name": "Reflective Stitch 1/4-Zip",
+      "msrp": "90.00",
+      "desc": "Quarter-zip with reflective stitch details and UV protection.",
+      "img": "img/pei/pei-cgm540.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM715 / CGW704",
+      "name": "Ottoman Fleece Pullover",
+      "msrp": "92.00",
+      "desc": "Thermal ottoman fleece pullover that's wind and water resistant.",
+      "img": "img/pei/pei-cgm715.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM790 / CGW789",
+      "name": "1/4-Zip Merino Sweater / Ladies V-Neck Sweater",
+      "msrp": "101.00",
+      "desc": "Merino wool blend sweaters with a rib-knit mock collar on the men's style.",
+      "img": "img/pei/pei-cgm790.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM788 / CGW787",
+      "name": "Packable Wind Jacket",
+      "msrp": "105.00",
+      "desc": "Packable wind- and water-resistant jacket for travel and events.",
+      "img": "img/pei/pei-cgm788.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM807 / CGW816",
+      "name": "Water Repellent Full-Zip Jacket",
+      "msrp": "112.00",
+      "desc": "New water-repellent full-zip jacket with a mock neck.",
+      "img": "img/pei/pei-cgm807.jpg"
+    },
+    {
+      "brand": "Callaway",
+      "styles": "CGM797 / CGW799",
+      "name": "Soft Shell Full-Zip Jacket",
+      "msrp": "112.00",
+      "desc": "Soft shell full-zip jacket with UV Repel protection.",
+      "img": "img/pei/pei-cgm797.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGKBA001 / OGKBA002",
+      "name": "Oxford Polo",
+      "msrp": "67.00",
+      "desc": "Moisture-wicking polo with a classic oxford look and the Pete logo.",
+      "img": "img/pei/pei-ogkba001.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGM0F4 / OGW0B9",
+      "name": "Solid Polo",
+      "msrp": "54.00",
+      "desc": "Stretch double-knit pique polo with a contrast embroidered Pete.",
+      "img": "img/pei/pei-ogm0f4.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGKSE002 / OGKSE048",
+      "name": "Technical Earl Polo / Ladies Veronica Polo",
+      "msrp": "76.00",
+      "desc": "Stretch pique polo with signature contrast piping.",
+      "img": "img/pei/pei-ogkse002.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGKSC0F0",
+      "name": "All-Over Pete Printed Polo",
+      "msrp": "86.00",
+      "desc": "Printed polo covered in the playful Pete logo.",
+      "img": "img/pei/pei-ogksc0f0.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGM105",
+      "name": "Retro Geo Polo",
+      "msrp": "86.00",
+      "desc": "Moisture-wicking polo with a retro geometric pattern.",
+      "img": "img/pei/pei-ogm105.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGM100 / OGW103",
+      "name": "Lightweight Earl 1/4-Zip / Veronica 1/4-Zip",
+      "msrp": "86.00",
+      "desc": "Lightweight quarter-zip pullovers with contrast piping.",
+      "img": "img/pei/pei-ogm100.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGKSA049 / OGKSB222",
+      "name": "Clubhouse Mock Pullover",
+      "msrp": "112.00",
+      "desc": "Quarter-zip mock pullover with contrast piping and a rib-knit mock neck.",
+      "img": "img/pei/pei-ogksa049.jpg"
+    },
+    {
+      "brand": "Original Penguin",
+      "styles": "OGJSG0B2",
+      "name": "Full-Zip Wind Jacket",
+      "msrp": "88.00",
+      "desc": "New unisex full-zip wind jacket with elastic binding at hem and cuffs.",
+      "img": "img/pei/pei-ogjsg0b2.jpg"
+    },
+    {
+      "brand": "PGA TOUR",
+      "styles": "PGM001 / PGW004",
+      "name": "Airflux® Polo",
+      "msrp": "43.00",
+      "desc": "Breathable Airflux® performance polo at a great price point.",
+      "img": "img/pei/pei-pgm001.jpg"
+    },
+    {
+      "brand": "PGA TOUR",
+      "styles": "PGM002 / PGW007",
+      "name": "Jaspe Airflux® Polo",
+      "msrp": "50.00",
+      "desc": "Heathered jaspe version of the Airflux® polo, with a new women's style.",
+      "img": "img/pei/pei-pgm002.jpg"
+    },
+    {
+      "brand": "PGA TOUR",
+      "styles": "PGM003",
+      "name": "Heather Feeder Stripe Polo",
+      "msrp": "50.00",
+      "desc": "Heathered feeder-stripe polo with moisture wicking.",
+      "img": "img/pei/pei-pgm003.jpg"
+    },
+    {
+      "brand": "PGA TOUR",
+      "styles": "PGM006 / PGW005",
+      "name": "Feeder Stripe Mock Neck",
+      "msrp": "64.00",
+      "desc": "New feeder-stripe quarter-zip mock neck with UV protection.",
+      "img": "img/pei/pei-pgm006.jpg"
+    }
+  ]
+}

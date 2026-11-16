@@ -1,0 +1,236 @@
+{
+  "startWeek": "2026-11-17",
+  "perWeek": 4,
+  "salesFlyers": "https://www.capamerica.com/sales-flyer",
+  "logo": "img/capa/capamerica-logo.png",
+  "groups": {
+    "caps": {
+      "until": null
+    },
+    "holiday": {
+      "until": "2026-12-31"
+    },
+    "knits": {
+      "until": "2027-03-31",
+      "slots": 2
+    }
+  },
+  "items": [
+    {
+      "item": "i7280",
+      "name": "Anyrope Air",
+      "desc": "Five-panel performance cap with perforated sides and back, a UV guard and an interchangeable rope accent.",
+      "group": "caps",
+      "img": "img/capa/capa-i7280.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i8502",
+      "name": "Flexfit 110® Premium Trucker Cap",
+      "desc": "Structured performance trucker with Flexfit 110® comfort, a silver undervisor and dozens of color combos.",
+      "group": "caps",
+      "img": "img/capa/capa-i8502.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i7256",
+      "name": "Icon Performance Rope Cap",
+      "desc": "Five-panel performance cap with a rope accent, now in five new colorways.",
+      "group": "caps",
+      "img": "img/capa/capa-i7256.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i3038",
+      "name": "Classic 6 Panel Trucker Cap",
+      "desc": "The classic poly/cotton trucker with mesh back, in more than 40 colorways. Great with a leather patch.",
+      "group": "caps",
+      "img": "img/capa/capa-i3038.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i8580",
+      "name": "GameReady Perforated Cap",
+      "desc": "Stretch-fit performance cap with perforated panels, built for teams. Personalized numbers available.",
+      "group": "caps",
+      "img": "img/capa/capa-i8580.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i7286",
+      "name": "Anyrope Core",
+      "desc": "Five-panel performance cap with an interchangeable rope accent to match any logo or team colors.",
+      "group": "caps",
+      "img": "img/capa/capa-i7286.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i3056",
+      "name": "Summit Perforated Cap with Rope",
+      "desc": "Five-panel perforated cap with a rope accent and a quick-dry sweatband.",
+      "group": "caps",
+      "img": "img/capa/capa-i3056.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i7202",
+      "name": "Active Dad Cap",
+      "desc": "Low-profile soft-structured dad cap in performance fabric with a UV guard.",
+      "group": "caps",
+      "img": "img/capa/capa-i7202.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i8503",
+      "name": "Flexfit® Perforated Performance Cap",
+      "desc": "On-field perforated cap in Flexfit® sizing from XS to XXL, in more than 40 colorways.",
+      "group": "caps",
+      "img": "img/capa/capa-i8503.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i3068",
+      "name": "Hometown 5 Panel",
+      "desc": "Five-panel poly/cotton cap in solids and cream two-tones, including Mossy Oak® Break-Up®.",
+      "group": "caps",
+      "img": "img/capa/capa-i3068.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i7266",
+      "name": "Fuse Performance Cap",
+      "desc": "Six-panel structured performance cap with a modified flat visor and moisture wicking.",
+      "group": "caps",
+      "img": "img/capa/capa-i7266.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i2026",
+      "name": "Daybreak Camo Cap",
+      "desc": "Five-panel performance cap in outdoor camo patterns including Marshland, Canyon and Saltwater.",
+      "group": "caps",
+      "img": "img/capa/capa-i2026.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i8533",
+      "name": "Flexfit 110® Perforated Performance Snapback",
+      "desc": "Perforated performance snapback with Flexfit 110® comfort and a silver undervisor.",
+      "group": "caps",
+      "img": "img/capa/capa-i8533.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i3039",
+      "name": "Classic 5 Panel Trucker",
+      "desc": "Five-panel poly/cotton trucker with mesh back. Pairs well with a sublimated patch.",
+      "group": "caps",
+      "img": "img/capa/capa-i3039.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i7310",
+      "name": "Waypoint Rope Cap",
+      "desc": "Unstructured five-panel rope cap with a flat bill and flip-up mesh stay.",
+      "group": "caps",
+      "img": "img/capa/capa-i7310.jpg",
+      "url": "https://www.capamerica.com/category/new-style-4"
+    },
+    {
+      "item": "i3021",
+      "name": "Heritage Corduroy Trucker Cap",
+      "desc": "Corduroy front with trucker mesh, a holiday favorite with a laser-etched leather patch.",
+      "group": "holiday",
+      "img": "img/capa/capa-i3021.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "i1002",
+      "name": "Classic Dad Cap",
+      "desc": "Washed chino twill dad cap with a fabric strap and antique brass buckle.",
+      "group": "holiday",
+      "img": "img/capa/capa-i1002.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK8552",
+      "name": "Premium Waffle Knit Cap with Cuff",
+      "desc": "Ultra-soft tri-blend waffle knit with a ribbed cuff. Optional faux fur pom.",
+      "group": "knits",
+      "img": "img/capa/capa-ik8552.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK8554",
+      "name": "Premium Diagonal Weave Knit Cap with Cuff",
+      "desc": "Tri-blend diagonal-weave knit with pom and a fleece-lined earband.",
+      "group": "knits",
+      "img": "img/capa/capa-ik8554.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK55",
+      "name": "Cable Knit Cap with Cuff",
+      "desc": "Acrylic cable knit with a solid cuff and pom and a fleece-lined earband.",
+      "group": "knits",
+      "img": "img/capa/capa-ik55.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK70",
+      "name": "Waffle Knit Cap with Cuff",
+      "desc": "In-stock waffle knit with a solid color cuff, ideal for a woven patch.",
+      "group": "knits",
+      "img": "img/capa/capa-ik70.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK23",
+      "name": "Diagonal Dash Knit Cap with Ribbed Cuff",
+      "desc": "Acrylic knit with a dashed knit-in pattern, a ribbed cuff and a pom.",
+      "group": "knits",
+      "img": "img/capa/capa-ik23.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK37",
+      "name": "Sustainable Cuffed Knit with Polylana® Fiber",
+      "desc": "Cuffed knit made with Polylana® fiber, with variegated ribbing.",
+      "group": "knits",
+      "img": "img/capa/capa-ik37.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK61",
+      "name": "Thick Ribbed Knit Cap with Cuff",
+      "desc": "Thick ribbed knit with a two-color pom and variegated stripes.",
+      "group": "knits",
+      "img": "img/capa/capa-ik61.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK65",
+      "name": "Fleece Lined Knit Cap with Cuff",
+      "desc": "Fleece-lined knit with alternating stripes and a two-color pom, built for fall sports.",
+      "group": "knits",
+      "img": "img/capa/capa-ik65.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK57",
+      "name": "Heavy Ribbed Knit Cap with Cuff",
+      "desc": "Heavy ribbed knit with a fleece-lined earband and a two- or three-color pom.",
+      "group": "knits",
+      "img": "img/capa/capa-ik57.jpg",
+      "url": "https://www.capamerica.com"
+    },
+    {
+      "item": "iK56",
+      "name": "Double Stripe Knit Cap with Ribbed Cuff",
+      "desc": "Heathered knit with crown stripes and a solid ribbed cuff.",
+      "group": "knits",
+      "img": "img/capa/capa-ik56.jpg",
+      "url": "https://www.capamerica.com"
+    }
+  ]
+}
