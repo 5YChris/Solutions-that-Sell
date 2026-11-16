@@ -1,0 +1,456 @@
+{
+  "startWeek": "2026-11-17",
+  "perWeek": 6,
+  "suppliers": [
+    {
+      "name": "Innovation Line",
+      "more": "https://www.innovation-line.com/video_library_new.php",
+      "moreLabel": "Innovation Line Video Library",
+      "videos": [
+        {
+          "id": "kpGWiSoLQ8g",
+          "item": "",
+          "title": "Full-Color Jigsaw Puzzles",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/PZLSET.jpg"
+        },
+        {
+          "id": "yPDHHg8UDKo",
+          "item": "5176",
+          "title": "\"Upriser\" Folding Phone Stand",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5176.jpg"
+        },
+        {
+          "id": "IBbKEs5l9lk",
+          "item": "7147HT",
+          "title": "\"RoverReady\" Pet Bandana",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7147HT.jpg"
+        },
+        {
+          "id": "K4SpoYQ1Xg4",
+          "item": "7164",
+          "title": "\"New Orleans\" Tactile Fidget Spinner",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7164.jpg"
+        },
+        {
+          "id": "uXFTfF9NmYU",
+          "item": "7160",
+          "title": "\"Nucleus\" Tactile Stress Ball",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7160.jpg"
+        },
+        {
+          "id": "QqrlVnIQQZ8",
+          "item": "5169",
+          "title": "\"Prismix\" Light-Up Bluetooth Speaker",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5169.jpg"
+        },
+        {
+          "id": "k9w4SmtcmSQ",
+          "item": "BD116",
+          "title": "Innovation Line #BD116",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/BD116.jpg"
+        },
+        {
+          "id": "CI06mzqiNRY",
+          "item": "DKW50",
+          "title": "Innovation Line #DKW50",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/DKW50.jpg"
+        },
+        {
+          "id": "DpdZKrjMTfU",
+          "item": "DKW100",
+          "title": "Innovation Line #DKW100",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/DKW100.jpg"
+        },
+        {
+          "id": "L-IOOO_Q32E",
+          "item": "DKW200",
+          "title": "Innovation Line #DKW200",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/DKW200.jpg"
+        },
+        {
+          "id": "1cacrzpJygU",
+          "item": "DKW303",
+          "title": "Innovation Line #DKW303",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/DKW303.jpg"
+        },
+        {
+          "id": "9NcsCMLzSf0",
+          "item": "FAN100",
+          "title": "\"TurboBreeze\" High Speed Fan",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/FAN100.jpg"
+        },
+        {
+          "id": "xI5Xs_olryo",
+          "item": "LB101",
+          "title": "Innovation Line #LB101",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/LB101.jpg"
+        },
+        {
+          "id": "vL2RhtDISus",
+          "item": "PB300",
+          "title": "\"PowerVault\" 10,000 mAh Power Bank",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/PB300.jpg"
+        },
+        {
+          "id": "lypnajnBuDE",
+          "item": "PB301",
+          "title": "\"Volt\" Magnetic Wireless Power Bank",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/PB301.jpg"
+        },
+        {
+          "id": "23mOci_Fhmc",
+          "item": "RBRCA",
+          "title": "Innovation Line #RBRCA",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/RBRCA.jpg"
+        },
+        {
+          "id": "EVOm6vN3klU",
+          "item": "RBRCAM",
+          "title": "Innovation Line #RBRCAM",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/RBRCAM.jpg"
+        },
+        {
+          "id": "K3yTm1aW3jw",
+          "item": "RB300",
+          "title": "Innovation Line #RB300",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/RB300.jpg"
+        },
+        {
+          "id": "OcdD9fGmGwE",
+          "item": "SOCK10",
+          "title": "Innovation Line #SOCK10",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/SOCK10.jpg"
+        },
+        {
+          "id": "8YGAcCX_NvU",
+          "item": "SOCK11",
+          "title": "Innovation Line #SOCK11",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/SOCK11.jpg"
+        },
+        {
+          "id": "7JRd4EHOKF0",
+          "item": "TB6T",
+          "title": "Innovation Line #TB6T",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/TB6T.jpg"
+        },
+        {
+          "id": "tlxj5Jm4e9M",
+          "item": "TK100",
+          "title": "Innovation Line #TK100",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/TK100.jpg"
+        },
+        {
+          "id": "CdzUKrNoboA",
+          "item": "923",
+          "title": "Innovation Line #923",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/923.jpg"
+        },
+        {
+          "id": "fzt7KRdsilQ",
+          "item": "924",
+          "title": "Innovation Line #924",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/924.jpg"
+        },
+        {
+          "id": "VcFpkQ4255w",
+          "item": "926",
+          "title": "Innovation Line #926",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/926.jpg"
+        },
+        {
+          "id": "aY3g2zPevs0",
+          "item": "951",
+          "title": "Innovation Line #951",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/951.jpg"
+        },
+        {
+          "id": "RKHfADhe8To",
+          "item": "971",
+          "title": "\"Big Sky\" Crossbody Sling Pack",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/971.jpg"
+        },
+        {
+          "id": "7y2x2qgc288",
+          "item": "1203",
+          "title": "Innovation Line #1203",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/1203.jpg"
+        },
+        {
+          "id": "scrWIX-kJgY",
+          "item": "1133",
+          "title": "Innovation Line #1133",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/1133.jpg"
+        },
+        {
+          "id": "QFsSm_DV0pw",
+          "item": "3000",
+          "title": "Innovation Line #3000",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/3000.jpg"
+        },
+        {
+          "id": "UM-cbiWTDzM",
+          "item": "3311",
+          "title": "Innovation Line #3311",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/3311.jpg"
+        },
+        {
+          "id": "6Mls_Wg-xdE",
+          "item": "5034",
+          "title": "Innovation Line #5034",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5034.jpg"
+        },
+        {
+          "id": "NtcsxBW3GII",
+          "item": "5093",
+          "title": "Innovation Line #5093",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5093.jpg"
+        },
+        {
+          "id": "Cz9_UbehJLQ",
+          "item": "5094",
+          "title": "Innovation Line #5094",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5094.jpg"
+        },
+        {
+          "id": "PkwTL1E57_g",
+          "item": "5114",
+          "title": "Innovation Line #5114",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5114.jpg"
+        },
+        {
+          "id": "fGIoHj65Kb4",
+          "item": "5117",
+          "title": "Innovation Line #5117",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5117.jpg"
+        },
+        {
+          "id": "620rlsqT_0k",
+          "item": "5127",
+          "title": "Innovation Line #5127",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5127.jpg"
+        },
+        {
+          "id": "wdC48i54saE",
+          "item": "5129",
+          "title": "Innovation Line #5129",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5129.jpg"
+        },
+        {
+          "id": "xDkddWZQnsI",
+          "item": "5130",
+          "title": "Innovation Line #5130",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5130.jpg"
+        },
+        {
+          "id": "GOe9hXpyvvo",
+          "item": "5131HT",
+          "title": "Innovation Line #5131HT",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5131HT.jpg"
+        },
+        {
+          "id": "LkSCzUXEQU0",
+          "item": "5132",
+          "title": "Innovation Line #5132",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5132.jpg"
+        },
+        {
+          "id": "U0FwJs8mVgU",
+          "item": "5143",
+          "title": "Innovation Line #5143",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5143.jpg"
+        },
+        {
+          "id": "vvzqpnFwyRw",
+          "item": "5141",
+          "title": "Innovation Line #5141",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5141.jpg"
+        },
+        {
+          "id": "9sLD-mwSAWo",
+          "item": "5145",
+          "title": "Innovation Line #5145",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5145.jpg"
+        },
+        {
+          "id": "jyV-5ZhuqaM",
+          "item": "5152",
+          "title": "Detachable 10W Bluetooth Speaker Set",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5152.jpg"
+        },
+        {
+          "id": "fP9iW517pmE",
+          "item": "5253S",
+          "title": "Innovation Line #5253S",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5253S.jpg"
+        },
+        {
+          "id": "72rj52wb_Vs",
+          "item": "5160",
+          "title": "Innovation Line #5160",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5160.jpg"
+        },
+        {
+          "id": "pwTh5x4EAss",
+          "item": "5161",
+          "title": "Innovation Line #5161",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5161.jpg"
+        },
+        {
+          "id": "qOkeVpaOg28",
+          "item": "5162",
+          "title": "\"VersaLink\" 100W Fast Charging Cable",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5162.jpg"
+        },
+        {
+          "id": "wiEC5Ksf6O8",
+          "item": "5163",
+          "title": "\"ClearCharge Pro\" Wireless Charger Stand",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5163.jpg"
+        },
+        {
+          "id": "Kvi4LPUZv8s",
+          "item": "5166",
+          "title": "\"AmpStation\" 3-in-1 Wireless Charging Station",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5166.jpg"
+        },
+        {
+          "id": "Tt1paiSfSjU",
+          "item": "5214",
+          "title": "Innovation Line #5214",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5214.jpg"
+        },
+        {
+          "id": "tVTBL0kDuh8",
+          "item": "5261",
+          "title": "Innovation Line #5261",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5261.jpg"
+        },
+        {
+          "id": "aWFivjfSsG8",
+          "item": "5258",
+          "title": "Innovation Line #5258",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5258.jpg"
+        },
+        {
+          "id": "AhsxZwhr1AY",
+          "item": "5400",
+          "title": "Innovation Line #5400",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5400.jpg"
+        },
+        {
+          "id": "PdM9lVzPZ6o",
+          "item": "5402",
+          "title": "Innovation Line #5402",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/5402.jpg"
+        },
+        {
+          "id": "ZV1eARQvQ1M",
+          "item": "6536",
+          "title": "Innovation Line #6536",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/6536.jpg"
+        },
+        {
+          "id": "T88jtqtEK5I",
+          "item": "7134",
+          "title": "Innovation Line #7134",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7134.jpg"
+        },
+        {
+          "id": "AQlkl6ZtbTA",
+          "item": "7150",
+          "title": "\"Spin Squeeze\" Stress Reliever",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7150.jpg"
+        },
+        {
+          "id": "T6Cx5cqBgy0",
+          "item": "7154",
+          "title": "\"Quantum\" Pop N Spin Stress Reliever",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7154.jpg"
+        },
+        {
+          "id": "EKzsHrhurhE",
+          "item": "7156",
+          "title": "\"Bubbler\" Push Pop Stress Ball",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7156.jpg"
+        },
+        {
+          "id": "ORe9C3Kju2A",
+          "item": "7159",
+          "title": "\"LumaFold\" Foldable Lantern",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/7159.jpg"
+        },
+        {
+          "id": "t2t5KWt4S8s",
+          "item": "9217",
+          "title": "Innovation Line #9217",
+          "thumb": "https://www.innovation-line.com/Product-Images/Group/500/9217.jpg"
+        }
+      ]
+    },
+    {
+      "name": "uma",
+      "more": "https://www.youtube.com/@umaSchreibgeraete",
+      "moreLabel": "uma on YouTube",
+      "note": "Some uma videos are narrated in German.",
+      "videos": [
+        {
+          "id": "R5BNlLz_O_s",
+          "item": "0-0133 KT GUM",
+          "title": "TRINITY KT GUM"
+        },
+        {
+          "id": "Jm9cRC7CsQc",
+          "item": "0-0125",
+          "title": "SKY GUM"
+        },
+        {
+          "id": "kTClMbTR7VU",
+          "item": "0-2250 KT GUM",
+          "title": "RECYCLED PET PEN PRO KT GUM"
+        },
+        {
+          "id": "ZPrgJfYPKss",
+          "item": "0-2250 F SI",
+          "title": "Recycled²: RECYCLED PET PEN PRO F SI"
+        },
+        {
+          "id": "Spc-y_-ujHc",
+          "item": "0-2350",
+          "title": "RECYCLED PET PEN CORE"
+        },
+        {
+          "id": "Kh6WVxsniHU",
+          "item": "0-9370",
+          "title": "TITAN WOOD Ballpoint & Rollerball Set"
+        },
+        {
+          "id": "9Yy6g1ujeBE",
+          "item": "",
+          "title": "uma Wooden Pens & Pencils"
+        },
+        {
+          "id": "4lo0RFGplI8",
+          "item": "",
+          "title": "PIXEL F GREEN"
+        },
+        {
+          "id": "2oqzg9BvB84",
+          "item": "",
+          "title": "uma inside NFC PEN"
+        }
+      ]
+    },
+    {
+      "name": "Cap America",
+      "more": "https://www.capamerica.com/video",
+      "moreLabel": "Cap America videos & webinars",
+      "videos": []
+    },
+    {
+      "name": "Stormtech",
+      "more": "https://collection.cloudinary.com/hkee5j7du/4608f6dd0f7f9141a9de561a6bafd555",
+      "moreLabel": "Stormtech video collection",
+      "videos": []
+    }
+  ]
+}

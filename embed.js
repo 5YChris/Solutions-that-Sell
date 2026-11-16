@@ -94,6 +94,31 @@
 .sts .capa-logo{display:inline-block;margin-top:18px}.sts .capa-logo img{height:46px;width:auto;display:block}\
 .sts .capa-flyers{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600;text-decoration:none}\
 .sts .tag{display:inline-block;align-self:flex-start;margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--blue-soft);color:var(--blue);padding:3px 7px 2px;vertical-align:middle}\
+.sts .vid-main{max-width:980px;margin:10px auto 0}\
+.sts .vid-frame{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}\
+.sts .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}\
+.sts .vid-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}\
+.sts .vid-poster.fit{object-fit:contain;background:#fff;opacity:1}\
+.sts .vid-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:rgba(26,26,26,.82);border:2px solid #fff;cursor:pointer}\
+.sts .vid-play:after{content:"";position:absolute;left:33px;top:24px;border-left:26px solid #fff;border-top:18px solid transparent;border-bottom:18px solid transparent}\
+.sts .vid-cap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:16px 2px 0}\
+.sts .vid-cap h2{font-size:clamp(18px,2.2vw,24px);letter-spacing:.08em;margin-top:4px}\
+.sts .vid-cap .note{font-size:13px;color:var(--muted);margin-top:4px}\
+.sts .vid-cap .actions a{flex:none;padding:12px 22px 10px}\
+.sts .vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:40px 0 20px}\
+@media (max-width:860px){.sts .vid-grid{grid-template-columns:repeat(2,1fr)}}\
+@media (max-width:480px){.sts .vid-grid{grid-template-columns:1fr}}\
+.sts .vcard{border:1px solid var(--line);background:#fff;cursor:pointer;text-align:left;font-family:inherit;padding:0;display:flex;flex-direction:column}\
+.sts .vcard:hover{border-color:var(--ink)}\
+.sts .vcard .thumb{position:relative;aspect-ratio:16/9;background:#f5f5f5;overflow:hidden}\
+.sts .vcard .thumb img{width:100%;height:100%;object-fit:cover}\
+.sts .vcard .thumb img.fit{object-fit:contain;background:#fff}\
+.sts .vcard .thumb:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-30%,-50%);border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent;filter:drop-shadow(0 0 6px rgba(0,0,0,.6))}\
+.sts .vcard .meta{padding:14px 16px 16px}\
+.sts .vcard h3{font-family:inherit;font-size:16px;line-height:1.3;margin:6px 0 0;font-weight:600;color:var(--ink)}\
+.sts .vcard.on{outline:3px solid var(--blue);outline-offset:-3px}\
+.sts .vid-more{text-align:center;padding:10px 0 56px;font-size:15px;line-height:2}\
+.sts .vid-more a{color:var(--blue);font-weight:600;text-decoration:none;letter-spacing:.06em;margin:0 10px;white-space:nowrap}\
 .sts .partners{background:var(--blue-soft);padding:52px 0 60px}\
 .sts .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:30px}\
 .sts .partner{background:#fff;padding:22px;border-top:4px solid var(--blue);display:flex;flex-direction:column}\
@@ -296,6 +321,75 @@
       '<div class="capa-grid">' + picks.map(function (p) { return productCard(data, p); }).join('') + '</div></div></section>';
   }
 
+  // ---------- Videos ----------
+  function videoPicks(v) {
+    if (!v) return [];
+    var week = weekIndex(v.startWeek);
+    var groups = v.suppliers.filter(function (s) { return s.videos && s.videos.length; });
+    if (!groups.length) return [];
+    var perSup = Math.ceil(v.perWeek / groups.length) + 1;
+    var lists = groups.map(function (g) {
+      return rotate(g.videos, Math.min(perSup, g.videos.length), week).map(function (x) {
+        return { supplier: g.name, id: x.id, item: x.item, name: x.title, thumb: x.thumb || '', note: g.note || '' };
+      });
+    });
+    // round-robin across suppliers, starting with a different supplier each week
+    var out = [], i = 0, start = week % lists.length;
+    while (out.length < v.perWeek && i < perSup) {
+      for (var k = 0; k < lists.length && out.length < v.perWeek; k++) {
+        var l = lists[(start + k) % lists.length];
+        if (l[i]) out.push(l[i]);
+      }
+      i++;
+    }
+    return out;
+  }
+  function ytThumb(id) { return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
+
+  function renderVideos(box, ctx) {
+    var data = ctx.data, v = ctx.videos, picks = videoPicks(v);
+    var more = (v ? v.suppliers : []).map(function (s) { return '<a href="' + esc(s.more) + '" target="_blank" rel="noopener">' + esc(s.moreLabel) + ' &rarr;</a>'; }).join(' ');
+    box.innerHTML = '<div class="sts">' + specialsBar(box, ctx.sp) +
+      '<header class="full-head"><div class="wrap center"><p class="eyebrow">See it in action</p><h1>Watch &amp; Sell</h1>' +
+      '<p class="lede">Product videos from my supplier partners, with new picks every Tuesday. Share them with your clients to help close the sale.</p>' +
+      '<p class="updated">' + weekOf(data) + '</p></div></header>' +
+      '<div class="wrap">' + (picks.length ?
+        '<div class="vid-main"><div class="vid-frame"></div><div class="vid-cap"><div><span class="sup"></span><h2></h2><div class="note"></div></div>' +
+        '<div class="actions"><a class="primary" href="#" target="_top">Ask Chris</a></div></div></div>' +
+        '<div class="vid-grid"></div>' : '<p class="sp-none">New videos are on the way.</p>') +
+      '<div class="vid-more">More videos: ' + more + '</div></div>' +
+      '<section class="contact"><div class="wrap"><p>Questions, samples or pricing on anything here?</p>' +
+      '<p class="small">Chris Yoder &nbsp;|&nbsp; <a href="mailto:' + esc(data.contactEmail) + '">' + esc(data.contactEmail) + '</a> &nbsp;|&nbsp; 262.442.8223</p></div></section></div>';
+    if (!picks.length) return;
+    var frame = box.querySelector('.vid-frame'), grid = box.querySelector('.vid-grid');
+    function poster(p) {
+      return '<img class="vid-poster" alt="" src="' + esc(ytThumb(p.id)) + '"><button class="vid-play" type="button" aria-label="Play video"></button>';
+    }
+    function show(idx, autoplay) {
+      var p = picks[idx];
+      box.querySelector('.vid-cap .sup').textContent = p.supplier + (p.item ? ' · ' + p.item : '');
+      box.querySelector('.vid-cap h2').textContent = p.name;
+      box.querySelector('.vid-cap .note').textContent = p.note;
+      box.querySelector('.vid-cap a.primary').href = mailto(data, { name: p.name, item: p.item, supplier: p.supplier });
+      grid.querySelectorAll('.vcard').forEach(function (c, k) { c.classList.toggle('on', k === idx); });
+      if (autoplay) {
+        frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0" title="' + esc(p.name) +
+          '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+      } else {
+        frame.innerHTML = poster(p);
+        frame.querySelector('.vid-play').onclick = function () { show(idx, true); };
+      }
+    }
+    grid.innerHTML = picks.map(function (p, k) {
+      var img = p.thumb ? '<img class="fit" loading="lazy" alt="" src="' + esc(p.thumb) + '" onerror="this.src=\'' + ytThumb(p.id) + '\';this.className=\'\'">' : '<img loading="lazy" alt="" src="' + esc(ytThumb(p.id)) + '">';
+      return '<button type="button" class="vcard" data-k="' + k + '"><div class="thumb">' + img + '</div><div class="meta"><span class="sup">' + esc(p.supplier) + '</span><h3>' + esc(p.name) + '</h3></div></button>';
+    }).join('');
+    grid.querySelectorAll('.vcard').forEach(function (c) {
+      c.onclick = function () { show(+c.getAttribute('data-k'), true); frame.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+    });
+    show(0, false);
+  }
+
   function renderFull(box, ctx) {
     var data = ctx.data, uma = ctx.uma;
     // Main grid: weekly partner picks, topped up with PEI so rows come out even (at least one PEI pick)
@@ -351,16 +445,17 @@
         .then(function (r) { return r.ok ? r.json() : null; })
         .catch(function () { return null; });
     }
-    var reqs = ['uma.json', 'specials.json', 'capamerica.json', 'pei.json'].map(getJSON);
+    var reqs = ['uma.json', 'specials.json', 'capamerica.json', 'pei.json', 'videos.json'].map(getJSON);
     fetch(BASE + 'feed.json?v=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (data) {
         return Promise.all(reqs).then(function (res) {
-          var ctx = { data: data, uma: res[0], sp: res[1], capa: res[2], pei: res[3] };
+          var ctx = { data: data, uma: res[0], sp: res[1], capa: res[2], pei: res[3], videos: res[4] };
           boxes.forEach(function (box) {
             var v = box.getAttribute('data-view');
             if (v === 'full') renderFull(box, ctx);
             else if (v === 'specials') renderSpecials(box, data, ctx.sp);
+            else if (v === 'videos') renderVideos(box, ctx);
             else renderTeaser(box, ctx);
           });
         });
