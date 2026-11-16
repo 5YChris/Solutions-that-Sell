@@ -442,9 +442,38 @@
     },
     {
       "name": "Cap America",
-      "more": "https://www.capamerica.com/video",
-      "moreLabel": "Cap America videos & webinars",
-      "videos": []
+      "more": "https://vimeo.com/capamerica85",
+      "moreLabel": "Cap America on Vimeo",
+      "videos": [
+        {
+          "id": "891257346",
+          "provider": "vimeo",
+          "item": "",
+          "title": "Flexfit 110® Styles",
+          "thumb": "img/capa/capa-i8502.jpg"
+        },
+        {
+          "id": "886482335",
+          "provider": "vimeo",
+          "item": "i8530 / i8503",
+          "title": "Flexfit® Full Fabric & Perforated Performance Caps",
+          "thumb": "img/capa/capa-i8503.jpg"
+        },
+        {
+          "id": "432499903",
+          "provider": "vimeo",
+          "item": "i8503",
+          "title": "Flexfit® Perforated Performance Cap",
+          "thumb": "img/capa/capa-i8503.jpg"
+        },
+        {
+          "id": "783023946",
+          "provider": "vimeo",
+          "item": "i7256",
+          "title": "Icon Performance Rope Cap",
+          "thumb": "img/capa/capa-i7256.jpg"
+        }
+      ]
     },
     {
       "name": "Stormtech",

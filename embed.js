@@ -330,7 +330,8 @@
     var perSup = Math.ceil(v.perWeek / groups.length) + 1;
     var lists = groups.map(function (g) {
       return rotate(g.videos, Math.min(perSup, g.videos.length), week).map(function (x) {
-        return { supplier: g.name, id: x.id, item: x.item, name: x.title, thumb: x.thumb || '', note: g.note || '' };
+        var t = x.thumb ? (/^https?:/.test(x.thumb) ? x.thumb : BASE + x.thumb) : '';
+        return { supplier: g.name, id: x.id, provider: x.provider || 'youtube', item: x.item, name: x.title, thumb: t, note: g.note || '' };
       });
     });
     // round-robin across suppliers, starting with a different supplier each week
@@ -345,6 +346,11 @@
     return out;
   }
   function ytThumb(id) { return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
+  function posterOf(p) { return p.provider === 'vimeo' ? p.thumb : ytThumb(p.id); }
+  function playerSrc(p) {
+    return p.provider === 'vimeo' ? 'https://player.vimeo.com/video/' + encodeURIComponent(p.id) + '?autoplay=1&title=0&byline=0&portrait=0'
+      : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0';
+  }
 
   function renderVideos(box, ctx) {
     var data = ctx.data, v = ctx.videos, picks = videoPicks(v);
@@ -363,7 +369,7 @@
     if (!picks.length) return;
     var frame = box.querySelector('.vid-frame'), grid = box.querySelector('.vid-grid');
     function poster(p) {
-      return '<img class="vid-poster" alt="" src="' + esc(ytThumb(p.id)) + '"><button class="vid-play" type="button" aria-label="Play video"></button>';
+      return '<img class="vid-poster' + (p.provider === 'vimeo' ? ' fit' : '') + '" alt="" src="' + esc(posterOf(p)) + '"><button class="vid-play" type="button" aria-label="Play video"></button>';
     }
     function show(idx, autoplay) {
       var p = picks[idx];
@@ -373,7 +379,7 @@
       box.querySelector('.vid-cap a.primary').href = mailto(data, { name: p.name, item: p.item, supplier: p.supplier });
       grid.querySelectorAll('.vcard').forEach(function (c, k) { c.classList.toggle('on', k === idx); });
       if (autoplay) {
-        frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0" title="' + esc(p.name) +
+        frame.innerHTML = '<iframe src="' + esc(playerSrc(p)) + '" title="' + esc(p.name) +
           '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
       } else {
         frame.innerHTML = poster(p);
@@ -381,7 +387,7 @@
       }
     }
     grid.innerHTML = picks.map(function (p, k) {
-      var img = p.thumb ? '<img class="fit" loading="lazy" alt="" src="' + esc(p.thumb) + '" onerror="this.src=\'' + ytThumb(p.id) + '\';this.className=\'\'">' : '<img loading="lazy" alt="" src="' + esc(ytThumb(p.id)) + '">';
+      var img = p.thumb ? '<img class="fit" loading="lazy" alt="" src="' + esc(p.thumb) + '"' + (p.provider === 'vimeo' ? '' : ' onerror="this.src=\'' + ytThumb(p.id) + '\';this.className=\'\'"') + '>' : '<img loading="lazy" alt="" src="' + esc(ytThumb(p.id)) + '">';
       return '<button type="button" class="vcard" data-k="' + k + '"><div class="thumb">' + img + '</div><div class="meta"><span class="sup">' + esc(p.supplier) + '</span><h3>' + esc(p.name) + '</h3></div></button>';
     }).join('');
     grid.querySelectorAll('.vcard').forEach(function (c) {
