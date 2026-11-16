@@ -1,0 +1,147 @@
+{
+  "specials": [
+    {
+      "id": "pei-winter-2026",
+      "supplier": "PEI Corporate Apparel",
+      "title": "15% Off Winter Special",
+      "headline": "15% off all brands",
+      "ends": "2026-12-31",
+      "summary": "Take 15% off every PEI brand with a 36-piece minimum. Use promo code WINTERSPECIAL26.",
+      "promo": "WINTERSPECIAL26",
+      "terms": [
+        "Minimum 36 pieces.",
+        "Discount is taken off the net S–XL blank price.",
+        "Normal embroidery run charges and larger-size up-charges still apply.",
+        "Not valid on closeout merchandise."
+      ],
+      "flyer": "flyers/pei-winter-special-15-2026.pdf",
+      "items": []
+    },
+    {
+      "id": "pei-callaway-closeout-2026",
+      "supplier": "PEI Corporate Apparel",
+      "title": "Callaway Apparel Closeout",
+      "headline": "40% off",
+      "ends": null,
+      "summary": "Closeout pricing on Callaway outerwear, sweaters, quarter-zips and caps while supplies last.",
+      "terms": [
+        "Prices shown are for sizes S–XL. Add $4.00 (a) for XXL–4XL polos and $8.00 (a) for XXL–4XL outerwear.",
+        "Free ground shipping on a $250 minimum purchase in Callaway Apparel, single shipment within the continental U.S."
+      ],
+      "flyer": "flyers/pei-callaway-closeout-40-2026.pdf",
+      "items": [
+        {
+          "name": "Packable Wind Jacket",
+          "styles": "Men's CGM788 · Women's CGW787",
+          "desc": "Lightweight 2.4 oz. polyester wind jacket that packs down for travel. Men's S–4XL, women's S–XXXL.",
+          "msrp": "105.00",
+          "price": "57.00",
+          "img": "img/specials/cw-wind-jacket.jpg"
+        },
+        {
+          "name": "1/4-Zip Merino Sweater & Ladies V-Neck",
+          "styles": "Men's CGM790 · Women's CGW789",
+          "desc": "Merino wool and acrylic blend sweaters with a classic, polished look. Men's S–4XL, women's S–XXXL.",
+          "msrp": "101.00",
+          "price": "54.60",
+          "img": "img/specials/cw-merino.jpg"
+        },
+        {
+          "name": "Diamond Quilted Fleece 1/4-Zip",
+          "styles": "Men's CGM798 · Women's CGW793",
+          "desc": "Diamond-quilted polyester fleece quarter-zip for cool-weather layering. Men's S–4XL, women's S–XXXL.",
+          "msrp": "86.00",
+          "price": "45.60",
+          "img": "img/specials/cw-quilted-fleece.jpg"
+        },
+        {
+          "name": "Reflective Stitch 1/4-Zip",
+          "styles": "Men's CGM540 · Women's CGW545",
+          "desc": "Polyester pique quarter-zip with reflective stitch details. Men's S–4XL, women's S–XXXL.",
+          "msrp": "90.00",
+          "price": "48.00",
+          "img": "img/specials/cw-reflective-stitch.jpg"
+        },
+        {
+          "name": "Houndstooth 1/4-Zip Pullover",
+          "styles": "Men's CGM768",
+          "desc": "Polyester fleece pullover with a subtle houndstooth pattern. Men's S–4XL.",
+          "msrp": "84.00",
+          "price": "44.40",
+          "img": "img/specials/cw-houndstooth.jpg"
+        },
+        {
+          "name": "Liquid Metal Cap",
+          "styles": "CGH146",
+          "desc": "Mid-rise performance cap with a liquid-metal Callaway logo on the front. One size.",
+          "msrp": "26.00",
+          "price": "15.60",
+          "img": "img/specials/cw-liquid-metal-cap.jpg"
+        },
+        {
+          "name": "Tour Performance Cap",
+          "styles": "CGH143",
+          "desc": "Low-rise performance cap with a contrast embroidered Callaway logo on the back arch. One size.",
+          "msrp": "21.00",
+          "price": "12.60",
+          "img": "img/specials/cw-tour-cap.jpg"
+        },
+        {
+          "name": "Heritage Cap",
+          "styles": "CGH144",
+          "desc": "Unstructured washed-cotton cap with an embroidered Chevron on the side panel. One size.",
+          "msrp": "21.00",
+          "price": "12.60",
+          "img": "img/specials/cw-heritage-cap.jpg"
+        }
+      ]
+    },
+    {
+      "id": "pei-penguin-pga-closeout-2026",
+      "supplier": "PEI Corporate Apparel",
+      "title": "Original Penguin & PGA TOUR Closeout",
+      "headline": "40% off",
+      "ends": null,
+      "summary": "Closeout pricing on Original Penguin and PGA TOUR golf polos while supplies last.",
+      "terms": [
+        "Prices shown are for sizes S–XL. Add $4.00 (a) for XXL–4XL polos and $8.00 (a) for XXL–4XL outerwear.",
+        "Free ground shipping on a $250 minimum purchase in Callaway Apparel, single shipment within the continental U.S."
+      ],
+      "flyer": "flyers/pei-original-penguin-pga-closeout-40-2026.pdf",
+      "items": [
+        {
+          "name": "Solid Polo",
+          "styles": "Men's OGM0F4 · Women's OGW0B9",
+          "desc": "Stretch double-knit pique polo in six colors. Men's S–4XL, women's S–XXXL.",
+          "msrp": "54.00",
+          "price": "26.40",
+          "img": "img/specials/op-solid-polo.jpg"
+        },
+        {
+          "name": "Technical Earl Polo & Ladies Veronica Polo",
+          "styles": "Men's OGKSE002 · Women's OGKSE048",
+          "desc": "Nylon stretch pique polo with contrast piping and the signature Pete logo. Men's S–XXXL, women's S–XXL.",
+          "msrp": "76.00",
+          "price": "39.60",
+          "img": "img/specials/op-earl-veronica.jpg"
+        },
+        {
+          "name": "All-Over-Pete Printed Polo",
+          "styles": "Men's OGKSC0F0",
+          "desc": "Printed performance polo with recycled polyester content. Men's S–4XL.",
+          "msrp": "86.00",
+          "price": "45.60",
+          "img": "img/specials/op-all-over-pete.jpg"
+        },
+        {
+          "name": "Heather Feeder Stripe Polo",
+          "styles": "Men's PGM003",
+          "desc": "Heathered polyester feeder-stripe polo in three colors. Men's S–4XL.",
+          "msrp": "50.00",
+          "price": "24.00",
+          "img": "img/specials/pga-feeder-stripe.jpg"
+        }
+      ]
+    }
+  ]
+}

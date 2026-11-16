@@ -65,6 +65,29 @@
 .sts .uma-head a{font-size:12px;letter-spacing:.14em;color:var(--blue);text-decoration:none;font-weight:600;order:2}\
 .sts .uma-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding:20px 0 10px}\
 @media (max-width:480px){.sts .uma-grid{grid-template-columns:1fr}}\
+.sts .sp-bar{display:block;background:var(--blue);color:#fff;text-decoration:none;padding:14px 20px 12px;text-align:center;font-size:15px;letter-spacing:.06em;line-height:1.5}\
+.sts .sp-bar b{letter-spacing:.18em;text-transform:uppercase;margin-right:10px}\
+.sts .sp-bar span.go{white-space:nowrap;margin-left:10px;text-decoration:underline}\
+.sts .sp-list{padding:10px 0 60px}\
+.sts .sp{border:1px solid var(--line);margin-top:40px}\
+.sts .sp-head{background:var(--band);color:#fff;padding:26px 28px 24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:flex-end}\
+.sts .sp-head .sup{color:#9fa3ff}\
+.sts .sp-head h2{font-size:clamp(20px,2.6vw,28px);margin-top:6px}\
+.sts .sp-head p{color:#cfcfcf;font-size:16px;line-height:1.5;margin:10px 0 0;max-width:640px}\
+.sts .sp-badge{text-align:right}\
+.sts .sp-off{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:.06em;text-transform:uppercase}\
+.sts .sp-ends{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;margin-top:4px}\
+.sts .sp-promo{display:inline-block;margin-top:14px;border:1px dashed #fff;padding:8px 14px 6px;font-size:15px;letter-spacing:.14em}\
+.sts .sp-body{padding:4px 28px 26px}\
+.sts .sp .grid{padding:24px 0 6px}\
+.sts .price{display:flex;align-items:baseline;gap:10px;margin:2px 0 4px}\
+.sts .price .now{font-size:22px;font-weight:700;color:var(--blue)}\
+.sts .price .was{font-size:14px;color:var(--muted);text-decoration:line-through}\
+.sts .sp-terms{font-size:14px;line-height:1.55;color:#555;margin:18px 0 0;padding-left:18px}\
+.sts .sp-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}\
+.sts .sp-links a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:12px 18px 10px;border:1px solid var(--ink)}\
+.sts .sp-links a.primary{background:var(--ink);color:#fff}\
+.sts .sp-none{text-align:center;color:var(--muted);font-size:18px;padding:40px 0}\
 .sts .partners{background:var(--blue-soft);padding:52px 0 60px}\
 .sts .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:30px}\
 .sts .partner{background:#fff;padding:22px;border-top:4px solid var(--blue);display:flex;flex-direction:column}\
@@ -114,13 +137,62 @@
       return '<a class="t-card" href="' + esc(p.url) + '" target="_blank" rel="noopener"><div class="img">' + imgTag(p) +
         '</div><div class="meta"><div class="sup">' + esc(p.supplier) + '</div><div class="name">' + esc(p.name) + '</div></div></a>';
     }).join('');
-    box.innerHTML = '<div class="sts"><section class="teaser"><div class="wrap center">' +
+    box.innerHTML = '<div class="sts">' + specialsBar(box, box._sp) + '<section class="teaser"><div class="wrap center">' +
       '<p class="eyebrow">Top partners, top solutions</p><h2>Solutions that Sell</h2>' +
       '<p class="lede">Each week I spotlight a different category with proven ideas from the supplier lines I represent.</p>' +
       '<div class="focus-tag">This week: ' + esc(data.focus.title) + '</div>' +
       '<div class="teaser-grid">' + cards + '</div>' +
       '<a class="btn" href="' + esc(allUrl) + '" target="_top">See this week\'s solutions</a>' +
       '</div></section></div>';
+  }
+
+  // ---------- Specials ----------
+  // A special with an "ends" date disappears automatically after that day (Central time).
+  function activeSpecials(sp) {
+    if (!sp || !sp.specials) return [];
+    var now = Date.now();
+    return sp.specials.filter(function (s) {
+      if (!s.ends) return true;
+      return now < new Date(s.ends + 'T23:59:59-06:00').getTime();
+    });
+  }
+  function endsLabel(s) {
+    if (!s.ends) return 'While supplies last';
+    var d = new Date(s.ends + 'T12:00:00');
+    return 'Ends ' + d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+  function specialsBar(box, sp) {
+    var list = activeSpecials(sp);
+    if (!list.length) return '';
+    var url = box.getAttribute('data-specials') || 'https://www.5ymarketing.com/specials';
+    var text = list.map(function (s) { return s.title + ' (' + s.headline + ')'; }).join(' &middot; ');
+    return '<a class="sp-bar" href="' + esc(url) + '" target="_top"><b>Current Specials</b>' + text + '<span class="go">See all specials &rarr;</span></a>';
+  }
+  function renderSpecials(box, data, sp) {
+    var list = activeSpecials(sp);
+    var html = '<div class="sts"><header class="full-head"><div class="wrap center"><p class="eyebrow">Limited-time offers</p><h1>Specials</h1>' +
+      '<p class="lede">Current closeouts and promotions from my supplier partners. Offers drop off this page automatically when they end.</p></div></header><div class="wrap sp-list">';
+    if (!list.length) html += '<p class="sp-none">No specials are running right now. Check back soon, or ask me about current deals.</p>';
+    list.forEach(function (s) {
+      var items = (s.items || []).map(function (p) {
+        var q = { name: p.name, item: p.styles, supplier: s.supplier + ' ' + s.title };
+        return '<article class="card"><div class="img"><img loading="lazy" alt="' + esc(p.name) + '" src="' + esc(BASE + p.img) + '"></div>' +
+          '<div class="body"><span class="sup">' + esc(s.title) + '</span><h3>' + esc(p.name) + '</h3><div class="item">' + esc(p.styles) + '</div>' +
+          '<div class="price"><span class="now">$' + esc(p.price) + ' (a)</span><span class="was">MSRP $' + esc(p.msrp) + '</span></div>' +
+          '<p>' + esc(p.desc) + '</p><div class="actions"><a class="primary" href="' + mailto(data, q) + '" target="_top">Ask Chris</a></div></div></article>';
+      }).join('');
+      var q = { name: s.title, item: s.promo || '', supplier: s.supplier };
+      html += '<section class="sp" id="' + esc(s.id) + '"><div class="sp-head"><div><span class="sup">' + esc(s.supplier) + '</span><h2>' + esc(s.title) + '</h2><p>' + esc(s.summary) + '</p>' +
+        (s.promo ? '<div class="sp-promo">Promo code: ' + esc(s.promo) + '</div>' : '') + '</div>' +
+        '<div class="sp-badge"><div class="sp-off">' + esc(s.headline) + '</div><div class="sp-ends">' + esc(endsLabel(s)) + '</div></div></div>' +
+        '<div class="sp-body">' + (items ? '<div class="grid">' + items + '</div>' : '') +
+        (s.terms && s.terms.length ? '<ul class="sp-terms">' + s.terms.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '') +
+        '<div class="sp-links"><a class="primary" href="' + mailto(data, q) + '" target="_top">Ask Chris about this offer</a>' +
+        (s.flyer ? '<a href="' + esc(BASE + s.flyer) + '" target="_blank" rel="noopener">View the flyer (PDF)</a>' : '') + '</div></div></section>';
+    });
+    html += '</div><section class="contact"><div class="wrap"><p>Questions, samples or pricing on anything here?</p>' +
+      '<p class="small">Chris Yoder &nbsp;|&nbsp; <a href="mailto:' + esc(data.contactEmail) + '">' + esc(data.contactEmail) + '</a> &nbsp;|&nbsp; 262.442.8223</p></div></section></div>';
+    box.innerHTML = html;
   }
 
   // uma rotation: a new set of 2 Plastic + 2 Metal pens every Monday, cycling through the catalog
@@ -160,7 +232,7 @@
     var sups = [];
     data.products.forEach(function (p) { if (sups.indexOf(p.supplier) < 0) sups.push(p.supplier); });
     sups.sort();
-    box.innerHTML = '<div class="sts">' +
+    box.innerHTML = '<div class="sts">' + specialsBar(box, box._sp) +
       '<header class="full-head"><div class="wrap center"><p class="eyebrow">Top partners, top solutions</p><h1>Solutions that Sell</h1>' +
       '<p class="lede">A new category every week, with products from my supplier partners that give you and your clients ideas that work.</p></div></header>' +
       '<section class="focus-banner"><div class="wrap center"><p class="eyebrow">This week\'s focus</p><h2>' + esc(data.focus.title) + '</h2><p>' + esc(data.focus.intro) + '</p></div></section>' +
@@ -207,15 +279,23 @@
     var boxes = document.querySelectorAll('.sts-embed');
     if (!boxes.length) return;
     addHead();
-    var umaReq = fetch(BASE + 'uma.json?v=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .catch(function () { return null; });
+    function getJSON(name) {
+      return fetch(BASE + name + '?v=' + Date.now(), { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    }
+    var umaReq = getJSON('uma.json'), spReq = getJSON('specials.json');
     fetch(BASE + 'feed.json?v=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        return umaReq.then(function (uma) {
+        return Promise.all([umaReq, spReq]).then(function (res) {
+          var uma = res[0], sp = res[1];
           boxes.forEach(function (box) {
-            if (box.getAttribute('data-view') === 'full') renderFull(box, data, uma); else renderTeaser(box, data);
+            var v = box.getAttribute('data-view');
+            box._sp = sp;
+            if (v === 'full') renderFull(box, data, uma);
+            else if (v === 'specials') renderSpecials(box, data, sp);
+            else renderTeaser(box, data);
           });
         });
       })
