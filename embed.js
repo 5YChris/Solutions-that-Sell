@@ -96,7 +96,7 @@
 .sts .tag{display:inline-block;align-self:flex-start;margin-top:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--blue-soft);color:var(--blue);padding:3px 7px 2px;vertical-align:middle}\
 .sts .vid-main{max-width:980px;margin:10px auto 0}\
 .sts .vid-frame{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}\
-.sts .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}\
+.sts .vid-frame iframe,.sts .vid-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}\
 .sts .vid-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}\
 .sts .vid-poster.fit{object-fit:contain;background:#fff;opacity:1}\
 .sts .vid-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:rgba(26,26,26,.82);border:2px solid #fff;cursor:pointer}\
@@ -118,6 +118,18 @@
 .sts .vcard h3{font-family:inherit;font-size:16px;line-height:1.3;margin:6px 0 0;font-weight:600;color:var(--ink)}\
 .sts .vcard.on{outline:3px solid var(--blue);outline-offset:-3px}\
 .sts .vid-more{text-align:center;padding:10px 0 56px;font-size:15px;line-height:2}\
+.sts .vlib{border-top:1px solid var(--line);padding:44px 0 10px}\
+.sts .vlib .filters{margin:18px 0 0}\
+.sts .vlib .sub-filters .chip{font-size:13px;padding:7px 13px 5px}\
+.sts .vlib input{display:block;width:100%;max-width:460px;margin:16px auto 0;font-family:inherit;font-size:15px;border:1px solid var(--line);padding:11px 16px 9px}\
+.sts .vlib .count{text-align:center;color:var(--muted);font-size:14px;margin:14px 0 0}\
+.sts .vlib .vid-grid{grid-template-columns:repeat(4,1fr);gap:18px;padding:22px 0 10px}\
+@media (max-width:980px){.sts .vlib .vid-grid{grid-template-columns:repeat(3,1fr)}}\
+@media (max-width:700px){.sts .vlib .vid-grid{grid-template-columns:repeat(2,1fr)}}\
+.sts .vlib .vcard h3{font-size:14px}\
+.sts .vlib .vcard .meta{padding:10px 12px 12px}\
+.sts .vlib .item{display:block;font-size:12px;color:var(--muted);margin-top:4px}\
+.sts .vlib .show-more{display:block;margin:10px auto 0}\
 .sts .vid-more a{color:var(--blue);font-weight:600;text-decoration:none;letter-spacing:.06em;margin:0 10px;white-space:nowrap}\
 .sts .partners{background:var(--blue-soft);padding:52px 0 60px}\
 .sts .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:30px}\
@@ -328,11 +340,16 @@
     var groups = v.suppliers.filter(function (s) { return s.videos && s.videos.length; });
     if (!groups.length) return [];
     var perSup = Math.ceil(v.perWeek / groups.length) + 1;
+    var month = +new Date().toLocaleString('en-US', { month: 'numeric', timeZone: 'America/Chicago' });
     var lists = groups.map(function (g) {
-      return rotate(g.videos, Math.min(perSup, g.videos.length), week).map(function (x) {
-        var t = x.thumb ? (/^https?:/.test(x.thumb) ? x.thumb : BASE + x.thumb) : '';
-        return { supplier: g.name, id: x.id, provider: x.provider || 'youtube', item: x.item, name: x.title, thumb: t, note: g.note || '' };
-      });
+      // weekly pool: skip flagged videos; follow the supplier's seasonal groups when it has them
+      var pool = g.videos.filter(function (x) { return !x.skip; });
+      var season = (g.seasons || []).filter(function (s) { return s.months.indexOf(month) > -1; })[0];
+      if (season) {
+        var inSeason = pool.filter(function (x) { return season.groups.indexOf(x.group) > -1; });
+        if (inSeason.length) pool = inSeason;
+      }
+      return rotate(pool, Math.min(perSup, pool.length), week).map(function (x) { return vidItem(g, x); });
     });
     // round-robin across suppliers, starting with a different supplier each week
     var out = [], i = 0, start = week % lists.length;
@@ -345,8 +362,17 @@
     }
     return out;
   }
+  function vidItem(g, x) {
+    var t = x.thumb ? (/^https?:/.test(x.thumb) ? x.thumb : BASE + x.thumb) : '';
+    if (!t && x.provider === 'cloudinary') t = CLD + 'so_2,w_480,h_270,c_fill/v' + x.v + '/' + x.id + '.jpg';
+    return { supplier: g.name, id: x.id, provider: x.provider || 'youtube', v: x.v, vertical: !!x.vertical, item: x.item, name: x.title, group: x.group || '', thumb: t, note: g.note || '' };
+  }
+  var CLD = 'https://res.cloudinary.com/hkee5j7du/video/upload/';
   function ytThumb(id) { return 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; }
-  function posterOf(p) { return p.provider === 'vimeo' ? p.thumb : ytThumb(p.id); }
+  function posterOf(p) {
+    if (p.provider === 'cloudinary') return CLD + 'so_2,w_1280/v' + p.v + '/' + p.id + '.jpg';
+    return p.provider === 'vimeo' ? p.thumb : ytThumb(p.id);
+  }
   function playerSrc(p) {
     return p.provider === 'vimeo' ? 'https://player.vimeo.com/video/' + encodeURIComponent(p.id) + '?autoplay=1&title=0&byline=0&portrait=0'
       : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0';
@@ -362,38 +388,97 @@
       '<div class="wrap">' + (picks.length ?
         '<div class="vid-main"><div class="vid-frame"></div><div class="vid-cap"><div><span class="sup"></span><h2></h2><div class="note"></div></div>' +
         '<div class="actions"><a class="primary" href="#" target="_top">Ask Chris</a></div></div></div>' +
-        '<div class="vid-grid"></div>' : '<p class="sp-none">New videos are on the way.</p>') +
+        '<div class="vid-grid"></div>' +
+        '<section class="vlib"><div class="center"><p class="eyebrow">Full video library</p><h2>Browse All Videos</h2></div>' +
+        '<div class="filters sup-filters"></div><div class="filters sub-filters"></div>' +
+        '<input type="search" placeholder="Search by product, style or item #" aria-label="Search videos">' +
+        '<p class="count"></p><div class="vid-grid"></div><button type="button" class="chip show-more">Show more</button></section>'
+        : '<p class="sp-none">New videos are on the way.</p>') +
       '<div class="vid-more">More videos: ' + more + '</div></div>' +
       '<section class="contact"><div class="wrap"><p>Questions, samples or pricing on anything here?</p>' +
       '<p class="small">Chris Yoder &nbsp;|&nbsp; <a href="mailto:' + esc(data.contactEmail) + '">' + esc(data.contactEmail) + '</a> &nbsp;|&nbsp; 262.442.8223</p></div></section></div>';
     if (!picks.length) return;
     var frame = box.querySelector('.vid-frame'), grid = box.querySelector('.vid-grid');
     function poster(p) {
-      return '<img class="vid-poster' + (p.provider === 'vimeo' ? ' fit' : '') + '" alt="" src="' + esc(posterOf(p)) + '"><button class="vid-play" type="button" aria-label="Play video"></button>';
+      return '<img class="vid-poster' + (p.provider === 'vimeo' && !/vimeocdn/.test(p.thumb) ? ' fit' : '') + '" alt="" src="' + esc(posterOf(p)) + '"><button class="vid-play" type="button" aria-label="Play video"></button>';
     }
-    function show(idx, autoplay) {
-      var p = picks[idx];
+    function show(idx, autoplay, item) {
+      var p = item || picks[idx];
       box.querySelector('.vid-cap .sup').textContent = p.supplier + (p.item ? ' · ' + p.item : '');
       box.querySelector('.vid-cap h2').textContent = p.name;
       box.querySelector('.vid-cap .note').textContent = p.note;
       box.querySelector('.vid-cap a.primary').href = mailto(data, { name: p.name, item: p.item, supplier: p.supplier });
       grid.querySelectorAll('.vcard').forEach(function (c, k) { c.classList.toggle('on', k === idx); });
-      if (autoplay) {
+      if (autoplay && p.provider === 'cloudinary') {
+        frame.innerHTML = '<video controls autoplay playsinline poster="' + esc(posterOf(p)) + '" src="' + esc(CLD + 'vc_h264,q_auto,w_' + (p.vertical ? 720 : 1280) + '/v' + p.v + '/' + p.id + '.mp4') + '"></video>';
+      } else if (autoplay) {
         frame.innerHTML = '<iframe src="' + esc(playerSrc(p)) + '" title="' + esc(p.name) +
           '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
       } else {
         frame.innerHTML = poster(p);
-        frame.querySelector('.vid-play').onclick = function () { show(idx, true); };
+        frame.querySelector('.vid-play').onclick = function () { show(idx, true, item); };
       }
     }
+    function thumbImg(p) {
+      return p.thumb ? '<img class="fit" loading="lazy" alt="" src="' + esc(p.thumb) + '"' + (p.provider === 'vimeo' ? '' : (p.provider === 'cloudinary' ? '' : ' onerror="this.src=\'' + ytThumb(p.id) + '\';this.className=\'\'"')) + '>' : '<img loading="lazy" alt="" src="' + esc(ytThumb(p.id)) + '">';
+    }
     grid.innerHTML = picks.map(function (p, k) {
-      var img = p.thumb ? '<img class="fit" loading="lazy" alt="" src="' + esc(p.thumb) + '"' + (p.provider === 'vimeo' ? '' : ' onerror="this.src=\'' + ytThumb(p.id) + '\';this.className=\'\'"') + '>' : '<img loading="lazy" alt="" src="' + esc(ytThumb(p.id)) + '">';
+      var img = thumbImg(p);
       return '<button type="button" class="vcard" data-k="' + k + '"><div class="thumb">' + img + '</div><div class="meta"><span class="sup">' + esc(p.supplier) + '</span><h3>' + esc(p.name) + '</h3></div></button>';
     }).join('');
     grid.querySelectorAll('.vcard').forEach(function (c) {
       c.onclick = function () { show(+c.getAttribute('data-k'), true); frame.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
     });
     show(0, false);
+    renderLibrary(box, v, function (p) { show(-1, true, p); frame.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, thumbImg);
+  }
+
+  // Full library: every video, filterable by supplier, category and search
+  function renderLibrary(box, v, play, thumbImg) {
+    var lib = box.querySelector('.vlib');
+    if (!lib) return;
+    var all = [];
+    v.suppliers.forEach(function (g) { (g.videos || []).forEach(function (x) { all.push(vidItem(g, x)); }); });
+    var sups = v.suppliers.filter(function (g) { return g.videos && g.videos.length; });
+    var sup = 'All', grp = 'All', shown = 24;
+    var supEl = lib.querySelector('.sup-filters'), grpEl = lib.querySelector('.sub-filters'), q = lib.querySelector('input');
+    var grid = lib.querySelector('.vid-grid'), count = lib.querySelector('.count'), more = lib.querySelector('.show-more');
+    function chips(el, list, cur, label, on) {
+      el.innerHTML = '';
+      list.forEach(function (name) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'chip'; b.textContent = label(name);
+        b.setAttribute('aria-pressed', name === cur ? 'true' : 'false');
+        b.onclick = function () { on(name); };
+        el.appendChild(b);
+      });
+    }
+    function drawChips() {
+      chips(supEl, ['All'].concat(sups.map(function (g) { return g.name; })), sup, function (n) { return n === 'All' ? 'All partners' : n; },
+        function (n) { sup = n; grp = 'All'; shown = 24; drawChips(); draw(); });
+      var g = sups.filter(function (s) { return s.name === sup; })[0];
+      if (g && g.groups) chips(grpEl, ['All'].concat(g.groups), grp, function (n) { return n === 'All' ? 'All ' + g.name : n; },
+        function (n) { grp = n; shown = 24; drawChips(); draw(); });
+      else grpEl.innerHTML = '';
+    }
+    function draw() {
+      var s = q.value.trim().toLowerCase();
+      var list = all.filter(function (p) {
+        return (sup === 'All' || p.supplier === sup) && (grp === 'All' || p.group === grp) &&
+          (!s || (p.name + ' ' + (p.item || '') + ' ' + p.supplier).toLowerCase().indexOf(s) > -1);
+      });
+      count.textContent = list.length + ' video' + (list.length === 1 ? '' : 's');
+      grid.innerHTML = list.slice(0, shown).map(function (p, k) {
+        return '<button type="button" class="vcard" data-k="' + k + '"><div class="thumb">' + thumbImg(p) + '</div><div class="meta"><span class="sup">' +
+          esc(p.supplier) + '</span><h3>' + esc(p.name) + '</h3>' + (p.item ? '<span class="item">' + esc(p.item) + '</span>' : '') + '</div></button>';
+      }).join('');
+      grid.querySelectorAll('.vcard').forEach(function (c) { c.onclick = function () { play(list[+c.getAttribute('data-k')]); }; });
+      more.style.display = list.length > shown ? 'block' : 'none';
+      more.textContent = 'Show more (' + (list.length - shown) + ' more)';
+    }
+    q.oninput = function () { shown = 24; draw(); };
+    more.onclick = function () { shown += 24; draw(); };
+    drawChips(); draw();
   }
 
   function renderFull(box, ctx) {
