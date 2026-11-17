@@ -131,6 +131,43 @@
 .sts .vlib .item{display:block;font-size:12px;color:var(--muted);margin-top:4px}\
 .sts .vlib .show-more{display:block;margin:10px auto 0}\
 .sts .vid-more a{color:var(--blue);font-weight:600;text-decoration:none;letter-spacing:.06em;margin:0 10px;white-space:nowrap}\
+.sts .home-head{padding:48px 0 8px}\
+.sts .spot{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:34px;align-items:center;max-width:1080px;margin:26px auto 0;border:1px solid var(--line);padding:28px}\
+@media (max-width:820px){.sts .spot{grid-template-columns:1fr;padding:18px;gap:20px}}\
+.sts .spot-media{position:relative;aspect-ratio:4/3;background:#f5f5f5;display:flex;align-items:center;justify-content:center;overflow:hidden;text-decoration:none}\
+.sts .spot-media img{width:100%;height:100%;object-fit:contain}\
+.sts .spot-media.vid img{object-fit:cover}\
+.sts .spot-media.vid:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-30%,-50%);border-left:34px solid #fff;border-top:22px solid transparent;border-bottom:22px solid transparent;filter:drop-shadow(0 0 8px rgba(0,0,0,.6))}\
+.sts .spot-cap{font-size:14px;color:var(--muted);margin:10px 0 0;min-height:20px}\
+.sts .spot .eyebrow{margin:0}\
+.sts .spot h2{margin-top:8px;font-size:clamp(24px,3vw,34px)}\
+.sts .spot .known{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px}\
+.sts .spot p.txt{font-size:17px;line-height:1.5;color:#333;margin:14px 0 0}\
+.sts .spot-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}\
+.sts .spot-thumbs button{aspect-ratio:1/1;border:1px solid var(--line);background:#f5f5f5;padding:0;cursor:pointer;overflow:hidden}\
+.sts .spot-thumbs button img{width:100%;height:100%;object-fit:cover}\
+.sts .spot-thumbs button[aria-pressed="true"]{outline:3px solid var(--blue);outline-offset:-3px}\
+.sts .spot .actions{margin-top:22px;flex-wrap:wrap}\
+.sts .spot .actions a{flex:1 1 auto;padding:13px 14px 11px}\
+.sts .picks-head{margin:52px 0 0}\
+.sts .home-picks{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:26px 0 8px}\
+@media (max-width:860px){.sts .home-picks{grid-template-columns:repeat(2,1fr)}}\
+@media (max-width:480px){.sts .home-picks{grid-template-columns:1fr}}\
+.sts .home-picks .t-card{border:1px solid var(--line)}\
+.sts .home-picks .t-card:hover{border-color:var(--ink)}\
+.sts .home-picks .t-card .img{aspect-ratio:4/3}\
+.sts .home-links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:18px 0 10px}\
+.sts .home-links a{text-decoration:none;font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:15px 26px 13px;border:1px solid var(--ink)}\
+.sts .home-links a.primary{background:var(--ink);color:#fff}\
+.sts .p-strip{border-top:1px solid var(--line);margin-top:44px;padding:40px 0 52px}\
+.sts .p-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:20px}\
+@media (max-width:980px){.sts .p-row{grid-template-columns:repeat(4,1fr)}}\
+@media (max-width:560px){.sts .p-row{grid-template-columns:repeat(2,1fr)}}\
+.sts .p-row a{border:1px solid var(--line);padding:16px 10px 14px;text-align:center;text-decoration:none;display:flex;flex-direction:column;justify-content:center;gap:6px}\
+.sts .p-row a:hover{border-color:var(--ink)}\
+.sts .p-row a.on{border-color:var(--blue);background:var(--blue-soft)}\
+.sts .p-row b{font-size:15px;letter-spacing:.06em}\
+.sts .p-row span{font-size:12px;color:var(--muted);line-height:1.3}\
 .sts .partners{background:var(--blue-soft);padding:52px 0 60px}\
 .sts .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:30px}\
 .sts .partner{background:#fff;padding:22px;border-top:4px solid var(--blue);display:flex;flex-direction:column}\
@@ -223,20 +260,80 @@
     return out.slice(0, 6);
   }
 
+  // ---------- Home page ----------
+  // Partner of the Week rotates every Tuesday through the partner list; the rest of the page shows one pick per other partner.
+  function partnerKey(name) { return name.replace(/ Pens$| Corporate Apparel$/, ''); }
+  function partnerItems(ctx, name) {
+    var key = partnerKey(name), data = ctx.data;
+    if (key === 'Cap America') return capaPicks(ctx.capa);
+    if (key === 'PEI') return peiPicks(ctx.pei, 4);
+    if (key === 'uma') return umaAsProducts(ctx.uma);
+    var list = data.products.filter(function (p) { return p.supplier === key; });
+    if (list.length) return list;
+    // no product picks (e.g. Stormtech): use this week's videos from that partner
+    var v = ctx.videos, g = v && v.suppliers.filter(function (s) { return s.name === key; })[0];
+    if (!g) return [];
+    var pool = g.videos.filter(function (x) { return !x.skip; });
+    return rotate(pool, Math.min(4, pool.length), weekIndex(v.startWeek)).map(function (x) {
+      var p = vidItem(g, x);
+      return { supplier: key, name: p.name, item: p.item, img: p.thumb || ytThumb(p.id), url: '', video: true };
+    });
+  }
   function renderTeaser(box, ctx) {
-    var data = ctx.data;
-    var allUrl = box.getAttribute('data-all') || '#';
-    var cards = teaserPicks(ctx).map(function (p) {
-      return '<a class="t-card" href="' + esc(p.url) + '" target="_blank" rel="noopener"><div class="img">' + imgTag(p) +
+    var data = ctx.data, partners = data.partners || [];
+    var allUrl = box.getAttribute('data-all') || 'https://www.5ymarketing.com/solutions-that-sell';
+    var vidUrl = box.getAttribute('data-videos') || 'https://www.5ymarketing.com/partner-videos';
+    var week = weekIndex('2026-11-17');
+    var spot = partners.length ? partners[Math.max(0, week - 1) % partners.length] : null;
+    var spotItems = spot ? partnerItems(ctx, spot.name).slice(0, 4) : [];
+    // one pick from each of the other partners
+    var picks = [];
+    partners.forEach(function (s) {
+      if (s === spot) return;
+      var list = partnerItems(ctx, s.name).filter(function (p) { return !p.video; });
+      if (list.length) picks.push(list[week % list.length]);
+    });
+    picks = picks.slice(0, 6);
+    function linkFor(p) { return p.video ? vidUrl : p.url; }
+    var spotHtml = !spot ? '' :
+      '<section class="spot"><div><a class="spot-media" target="_top"></a><p class="spot-cap"></p></div>' +
+      '<div><p class="eyebrow">Partner of the week</p><h2>' + esc(spot.name) + '</h2><div class="known">' + esc(spot.known) + '</div>' +
+      '<p class="txt">' + esc(spot.text) + '</p>' +
+      (spotItems.length > 1 ? '<div class="spot-thumbs">' + spotItems.map(function (p, k) {
+        return '<button type="button" data-k="' + k + '" aria-label="' + esc(p.name) + '"><img loading="lazy" alt="" src="' + esc(p.img) + '"></button>';
+      }).join('') + '</div>' : '') +
+      '<div class="actions"><a class="primary" href="' + esc(mailto(data, { name: spot.name + ' ideas', supplier: spot.name })) + '" target="_top">Ask Chris</a>' +
+      '<a href="' + esc(spot.url) + '" target="_blank" rel="noopener">Visit website</a>' +
+      '<a href="' + esc(vidUrl) + '" target="_top">Watch videos</a></div></div></section>';
+    var cards = picks.map(function (p) {
+      return '<a class="t-card" href="' + esc(linkFor(p)) + '" target="_blank" rel="noopener"><div class="img">' + imgTag(p) +
         '</div><div class="meta"><div class="sup">' + esc(p.supplier) + '</div><div class="name">' + esc(p.name) + '</div></div></a>';
     }).join('');
-    box.innerHTML = '<div class="sts">' + specialsBar(box, ctx.sp) + '<section class="teaser"><div class="wrap center">' +
-      '<p class="eyebrow">Top partners, top solutions</p><h2>Solutions that Sell</h2>' +
-      '<p class="lede">Fresh ideas from the supplier lines I represent, with one pick from each partner. Updated every Tuesday.</p>' +
-      '<div class="focus-tag">' + weekOf(data) + '</div>' +
-      '<div class="teaser-grid">' + cards + '</div>' +
-      '<a class="btn" href="' + esc(allUrl) + '" target="_top">See this week\'s solutions</a>' +
-      '</div></section></div>';
+    box.innerHTML = '<div class="sts">' + specialsBar(box, ctx.sp) +
+      '<header class="home-head"><div class="wrap center"><p class="eyebrow">Top partners, top solutions</p><h1>Solutions that Sell</h1>' +
+      '<p class="lede">Fresh ideas from the supplier lines I represent, with a different partner in the spotlight every Tuesday.</p>' +
+      '<p class="updated">' + weekOf(data) + '</p></div></header>' +
+      '<div class="wrap">' + spotHtml +
+      (cards ? '<div class="center picks-head"><p class="eyebrow">This week\'s picks</p><h2>From All Our Partners</h2></div><div class="home-picks">' + cards + '</div>' : '') +
+      '<div class="home-links"><a class="primary" href="' + esc(allUrl) + '" target="_top">See all solutions</a>' +
+      '<a href="' + esc(vidUrl) + '" target="_top">Watch &amp; Sell videos</a></div>' +
+      '<section class="p-strip"><div class="center"><p class="eyebrow">The lines I represent</p><h2>Our Partners</h2></div><div class="p-row">' +
+      partners.map(function (s) {
+        return '<a' + (s === spot ? ' class="on"' : '') + ' href="' + esc(s.url) + '" target="_blank" rel="noopener"><b>' + esc(s.name) + '</b><span>' + esc(s.known) + '</span></a>';
+      }).join('') + '</div></section></div></div>';
+    if (!spot || !spotItems.length) { var m = box.querySelector('.spot-media'); if (m) m.parentNode.parentNode.style.gridTemplateColumns = '1fr'; if (m) m.parentNode.style.display = 'none'; return; }
+    var media = box.querySelector('.spot-media'), cap = box.querySelector('.spot-cap');
+    function pick(k) {
+      var p = spotItems[k];
+      media.className = 'spot-media' + (p.video ? ' vid' : '');
+      media.href = linkFor(p) || spot.url;
+      media.target = p.video ? '_top' : '_blank';
+      media.innerHTML = imgTag(p);
+      cap.textContent = p.name + (p.item ? ' · ' + p.item : '');
+      box.querySelectorAll('.spot-thumbs button').forEach(function (b, i) { b.setAttribute('aria-pressed', i === k ? 'true' : 'false'); });
+    }
+    box.querySelectorAll('.spot-thumbs button').forEach(function (b) { b.onclick = function () { pick(+b.getAttribute('data-k')); }; });
+    pick(0);
   }
 
   // ---------- Specials ----------
